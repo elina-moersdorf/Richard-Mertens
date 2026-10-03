@@ -1,0 +1,58 @@
+# Überträgt die Website bei jedem Push auf "main" per FTPS auf den STRATO-Webspace.
+# Benötigte GitHub-Secrets (Settings → Secrets and variables → Actions):
+#   FTP_SERVER      z. B. ftp.strato.de (Angabe im STRATO-Kundenbereich prüfen)
+#   FTP_USERNAME    FTP-Benutzername aus dem STRATO-Kundenbereich
+#   FTP_PASSWORD    zugehöriges Passwort
+#   FTP_SERVER_DIR  Zielordner auf dem Webspace, mit Schrägstrich am Ende, z. B. /landingpage/
+#                   (NICHT der Ordner der bisherigen WordPress-Seite)
+
+name: Deploy auf STRATO
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-strato
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Zugangsdaten prüfen
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          missing=""
+          [ -z "$FTP_SERVER" ] && missing="$missing FTP_SERVER"
+          [ -z "$FTP_USERNAME" ] && missing="$missing FTP_USERNAME"
+          [ -z "$FTP_PASSWORD" ] && missing="$missing FTP_PASSWORD"
+          [ -z "$FTP_SERVER_DIR" ] && missing="$missing FTP_SERVER_DIR"
+          if [ -n "$missing" ]; then
+            echo "::error::Folgende GitHub-Secrets fehlen noch:$missing"
+            exit 1
+          fi
+
+      - name: Code holen
+        uses: actions/checkout@v4
+
+      - name: Per FTPS auf STRATO übertragen
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            README.md
+            GTM-ANLEITUNG.md

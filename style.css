@@ -1788,6 +1788,29 @@ button.text-link {
 .cc__details dt { font-weight: 600; }
 .cc__details dd { margin: 0; color: var(--rm-ink-2); }
 
+/* Desktop: erste Ebene breit und flach – Text links, Buttons rechts */
+@media (min-width: 1000px) {
+  .cc__inner { max-width: 1240px; padding: 24px 32px; }
+  .cc__view[data-cc-view="main"] {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 48px;
+    row-gap: 8px;
+    align-items: center;
+  }
+  .cc__view[data-cc-view="main"] > .cc__title,
+  .cc__view[data-cc-view="main"] > .cc__text,
+  .cc__view[data-cc-view="main"] > .cc__links { grid-column: 1; }
+  .cc__view[data-cc-view="main"] > .cc__title { font-size: 1.15rem; }
+  .cc__view[data-cc-view="main"] > .cc__actions {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    grid-template-columns: repeat(2, 200px);
+    margin-top: 0;
+  }
+  /* Einstellungen bleiben übersichtlich mittig */
+  .cc__view[data-cc-view="settings"] { max-width: 760px; margin-inline: auto; }
+}
+
 @media (max-width: 479px) {
   .cc__details dl { grid-template-columns: 1fr; }
   .cc__details dd { margin-bottom: 6px; }

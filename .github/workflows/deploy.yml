@@ -1,10 +1,14 @@
-# Überträgt die Website bei jedem Push auf "main" per FTPS auf den STRATO-Webspace.
+# Überträgt die Website bei jedem Push auf "main" per SFTP auf den STRATO-Webspace.
+#
 # Benötigte GitHub-Secrets (Settings → Secrets and variables → Actions):
-#   FTP_SERVER      z. B. ftp.strato.de (Angabe im STRATO-Kundenbereich prüfen)
-#   FTP_USERNAME    FTP-Benutzername aus dem STRATO-Kundenbereich
-#   FTP_PASSWORD    zugehöriges Passwort
-#   FTP_SERVER_DIR  Zielordner auf dem Webspace, mit Schrägstrich am Ende, z. B. /landingpage/
-#                   (NICHT der Ordner der bisherigen WordPress-Seite)
+#   SFTP_HOST        persönlicher Servername aus STRATO, z. B. 50xxxxxx03.ssh.w2.strato.hosting
+#   SFTP_USERNAME    Benutzername des SFTP-Zugangs, z. B. su15xxx9
+#   SFTP_PASSWORD    Passwort des SFTP-Zugangs
+#   SFTP_TARGET_DIR  Zielordner für die neue Seite, z. B. landingpage
+#                    (eigener Ordner – NICHT der Ordner der bisherigen WordPress-Seite)
+#
+# Sicherheit: Es werden nur Dateien hochgeladen bzw. überschrieben, nie gelöscht.
+# Ein leerer Zielordner oder "/" wird abgelehnt.
 
 name: Deploy auf STRATO
 
@@ -20,39 +24,47 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SFTP_HOST: ${{ secrets.SFTP_HOST }}
+      SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+      LFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+      SFTP_TARGET_DIR: ${{ secrets.SFTP_TARGET_DIR }}
     steps:
       - name: Zugangsdaten prüfen
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
         run: |
           missing=""
-          [ -z "$FTP_SERVER" ] && missing="$missing FTP_SERVER"
-          [ -z "$FTP_USERNAME" ] && missing="$missing FTP_USERNAME"
-          [ -z "$FTP_PASSWORD" ] && missing="$missing FTP_PASSWORD"
-          [ -z "$FTP_SERVER_DIR" ] && missing="$missing FTP_SERVER_DIR"
+          [ -z "$SFTP_HOST" ] && missing="$missing SFTP_HOST"
+          [ -z "$SFTP_USERNAME" ] && missing="$missing SFTP_USERNAME"
+          [ -z "$LFTP_PASSWORD" ] && missing="$missing SFTP_PASSWORD"
+          [ -z "$SFTP_TARGET_DIR" ] && missing="$missing SFTP_TARGET_DIR"
           if [ -n "$missing" ]; then
             echo "::error::Folgende GitHub-Secrets fehlen noch:$missing"
             exit 1
           fi
+          dir="${SFTP_TARGET_DIR#/}"; dir="${dir%/}"
+          if [ -z "$dir" ] || [ "$dir" = "." ]; then
+            echo "::error::SFTP_TARGET_DIR darf nicht das Hauptverzeichnis sein – bitte einen eigenen Ordner angeben."
+            exit 1
+          fi
+          echo "TARGET=$dir" >> "$GITHUB_ENV"
 
       - name: Code holen
         uses: actions/checkout@v4
 
-      - name: Per FTPS auf STRATO übertragen
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            README.md
-            GTM-ANLEITUNG.md
+      - name: lftp installieren
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Per SFTP auf STRATO übertragen
+        run: |
+          lftp --env-password -u "$SFTP_USERNAME" "sftp://$SFTP_HOST" -p 22 -e "
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            set net:timeout 30;
+            mkdir -p -f $TARGET;
+            mirror --reverse --verbose --no-perms \
+              --exclude '^\.git(/|\$)' \
+              --exclude '^\.github/' \
+              --exclude-glob 'README.md' \
+              --exclude-glob 'GTM-ANLEITUNG.md' \
+              ./ $TARGET;
+            bye"

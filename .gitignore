@@ -1,0 +1,16 @@
+# Nur die Website gehört ins Repository – keine Arbeitsunterlagen oder Kundendaten
+design-system/
+*.pdf
+DESIGN-BRIEFING.md
+BEWERTUNGEN.md
+
+# Originalfotos (die Website nutzt nur die optimierten Fassungen in assets/img/)
+assets/*.jpg
+assets/*.jpeg
+assets/*.png
+!assets/img/
+
+# System
+.DS_Store
+Thumbs.db
+desktop.ini

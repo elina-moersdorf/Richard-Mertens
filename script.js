@@ -10,6 +10,31 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasGsap = typeof window.gsap !== 'undefined';
 
+  /* ---------- Texte je Sprache (Sprache aus <html lang>) ---------- */
+  const LANG = document.documentElement.lang === 'en' ? 'en' : 'de';
+  const T = {
+    de: {
+      more: 'Weiterlesen',
+      less: 'Weniger anzeigen',
+      dot: (i, n) => `Bewertung ${i} von ${n}`,
+      valueMissing: 'Bitte füllen Sie dieses Feld aus.',
+      typeMismatch: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+      sending: 'Ihre Anfrage wird gesendet …',
+      success: 'Vielen Dank. Ihre Anfrage ist angekommen. Ich melde mich in der Regel innerhalb von 24 Stunden bei Ihnen.',
+      error: 'Leider konnte Ihre Anfrage nicht gesendet werden. Bitte versuchen Sie es erneut oder rufen Sie mich an: 030 98312332.',
+    },
+    en: {
+      more: 'Read more',
+      less: 'Show less',
+      dot: (i, n) => `Review ${i} of ${n}`,
+      valueMissing: 'Please fill in this field.',
+      typeMismatch: 'Please enter a valid email address.',
+      sending: 'Sending your enquiry …',
+      success: 'Thank you. Your enquiry has been received. I will usually get back to you within 24 hours.',
+      error: 'Unfortunately, your enquiry could not be sent. Please try again or call me on +49 30 98312332.',
+    },
+  }[LANG];
+
   if (hasGsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
   /* ---------- Smooth Scroll (Lenis) ---------- */
@@ -66,7 +91,7 @@
       const card = btn.closest('.review');
       btn.addEventListener('click', () => {
         const open = card.classList.toggle('is-open');
-        btn.textContent = open ? 'Weniger anzeigen' : 'Weiterlesen';
+        btn.textContent = open ? T.less : T.more;
         btn.setAttribute('aria-expanded', String(open));
       });
     });
@@ -76,7 +101,7 @@
     cards.forEach((card, i) => {
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.setAttribute('aria-label', `Bewertung ${i + 1} von ${cards.length}`);
+      dot.setAttribute('aria-label', T.dot(i + 1, cards.length));
       dot.addEventListener('click', () => {
         track.scrollTo({ left: card.offsetLeft - track.offsetLeft - track.clientLeft - parseFloat(getComputedStyle(track).paddingLeft), behavior: reducedMotion ? 'auto' : 'smooth' });
       });
@@ -106,8 +131,8 @@
     const status = form.querySelector('.contact-form__status');
     const submit = form.querySelector('.contact-form__submit');
     const messages = {
-      valueMissing: 'Bitte füllen Sie dieses Feld aus.',
-      typeMismatch: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+      valueMissing: T.valueMissing,
+      typeMismatch: T.typeMismatch,
     };
 
     const setError = (field, text) => {
@@ -152,7 +177,7 @@
 
       submit.disabled = true;
       status.classList.remove('is-error');
-      status.textContent = 'Ihre Anfrage wird gesendet …';
+      status.textContent = T.sending;
 
       try {
         const response = await fetch(form.action, {
@@ -163,10 +188,10 @@
         const result = await response.json();
         if (!response.ok || !result.success) throw new Error(result.message || 'Fehler');
         form.reset();
-        status.textContent = 'Vielen Dank. Ihre Anfrage ist angekommen. Ich melde mich in der Regel innerhalb von 24 Stunden bei Ihnen.';
+        status.textContent = T.success;
       } catch (error) {
         status.classList.add('is-error');
-        status.textContent = 'Leider konnte Ihre Anfrage nicht gesendet werden. Bitte versuchen Sie es erneut oder rufen Sie mich an: 030 98312332.';
+        status.textContent = T.error;
       } finally {
         submit.disabled = false;
       }

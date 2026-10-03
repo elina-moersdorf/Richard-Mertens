@@ -320,6 +320,46 @@ html.lenis body { height: auto; }
 
 .site-nav__links { display: none; }
 
+/* Sprachumschalter DE | EN – klein und unauffällig */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font: 600 13px/1 var(--font-sans);
+  letter-spacing: .08em;
+  color: var(--rm-mist);
+}
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--rm-mist);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-calm);
+}
+.lang-switch a:hover { color: var(--rm-white); }
+.lang-switch a[aria-current="true"] {
+  color: var(--rm-gold-light);
+  text-decoration: underline;
+  text-decoration-color: var(--rm-gold);
+  text-underline-offset: 6px;
+}
+.lang-switch__sep { color: var(--rm-deep-line); }
+@media (max-width: 479px) {
+  .site-nav__inner { gap: 8px; }
+  .site-nav__actions { gap: 4px; }
+  .site-nav__actions .btn--sm { padding: 10px 12px; }
+  .lang-switch { gap: 0; }
+  .lang-switch a { min-width: 24px; padding: 0 2px; }
+}
+@media (max-width: 399px) {
+  .brand__name { font-size: 18px; }
+  .brand__sub { font-size: 9px; letter-spacing: .14em; }
+}
+
 .site-nav__actions {
   display: flex;
   align-items: center;

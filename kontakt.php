@@ -15,16 +15,21 @@ const MIN_SECONDS = 3;                                 // schneller ausgefüllte
 const TOPICS      = ['Scheidung', 'Unterhalt', 'Sorge- und Umgangsrecht', 'Zugewinn und Vermögen', 'Sonstiges'];
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
+$isEnglish = (($_POST['lang'] ?? '') === 'en');   // englisches Formular unter /en/
 
 function respond(bool $ok, string $message, bool $json): never
 {
+    global $isEnglish;
     if ($json) {
         header('Content-Type: application/json; charset=utf-8');
         http_response_code($ok ? 200 : 400);
         echo json_encode(['success' => $ok, 'message' => $message], JSON_UNESCAPED_UNICODE);
     } else {
-        // ohne JavaScript: zurück zur Seite bzw. Bestätigungsseite
-        header('Location: ' . ($ok ? 'danke.html' : 'index.html#kontakt'), true, 303);
+        // ohne JavaScript: zurück zur Seite bzw. Bestätigungsseite der jeweiligen Sprache
+        $target = $isEnglish
+            ? ($ok ? 'en/thank-you.html' : 'en/#contact')
+            : ($ok ? 'danke.html' : 'index.html#kontakt');
+        header('Location: ' . $target, true, 303);
     }
     exit;
 }
@@ -71,14 +76,19 @@ if ($phone !== '' && !preg_match('/^[0-9 +()\/.\-]{5,40}$/', $phone)) {
 }
 
 /* ---------- E-Mail an die Kanzlei ---------- */
-$subject = mb_encode_mimeheader('Neue Anfrage über die Website: ' . $topic, 'UTF-8', 'B');
+$subject = mb_encode_mimeheader(
+    'Neue Anfrage über die Website' . ($isEnglish ? ' (Englisch)' : '') . ': ' . $topic,
+    'UTF-8',
+    'B'
+);
 
 $body = "Neue Anfrage über das Kontaktformular\n"
       . "=====================================\n\n"
       . "Name:     {$name}\n"
       . "E-Mail:   {$email}\n"
       . "Telefon:  " . ($phone !== '' ? $phone : '–') . "\n"
-      . "Anliegen: {$topic}\n\n"
+      . "Anliegen: {$topic}\n"
+      . 'Sprache:  ' . ($isEnglish ? 'Englisch (Anfrage über die englische Seite)' : 'Deutsch') . "\n\n"
       . "Nachricht:\n{$message}\n\n"
       . "-------------------------------------\n"
       . 'Gesendet am ' . date('d.m.Y \u\m H:i') . " Uhr\n";

@@ -133,91 +133,151 @@
     hideBanner();
   }
 
-  /* ---------- 3. Banner ---------- */
-  const TEXT = {
-    intro: 'Ich setze auf dieser Website Dienste von Google ein (Google Tag Manager, Google Analytics, Google Ads), um die Nutzung statistisch auszuwerten und den Erfolg meiner Anzeigen zu messen. Diese Dienste nutze ich nur mit Ihrer Einwilligung. Dabei können Daten an Google in die USA übermittelt werden. Ihre Einwilligung ist freiwillig und kann jederzeit über „Cookie-Einstellungen“ am Seitenende geändert oder widerrufen werden. Technisch notwendige Funktionen sind immer aktiv.',
-  };
+  /* ---------- 3. Banner (Texte je Sprache, Sprache aus <html lang>) ---------- */
+  const LANG = document.documentElement.lang === 'en' ? 'en' : 'de';
+  const L = {
+    de: {
+      title: 'Datenschutz-Einstellungen',
+      intro: 'Ich setze auf dieser Website Dienste von Google ein (Google Tag Manager, Google Analytics, Google Ads), um die Nutzung statistisch auszuwerten und den Erfolg meiner Anzeigen zu messen. Diese Dienste nutze ich nur mit Ihrer Einwilligung. Dabei können Daten an Google in die USA übermittelt werden. Ihre Einwilligung ist freiwillig und kann jederzeit über „Cookie-Einstellungen“ am Seitenende geändert oder widerrufen werden. Technisch notwendige Funktionen sind immer aktiv.',
+      privacy: 'Datenschutzerklärung', privacyHref: 'datenschutz.html',
+      imprint: 'Impressum', imprintHref: 'impressum.html',
+      reject: 'Alle ablehnen', accept: 'Alle akzeptieren', settings: 'Einstellungen', save: 'Auswahl speichern',
+      settingsTitle: 'Einstellungen',
+      settingsIntro: 'Wählen Sie, welche Dienste Sie zulassen möchten. Sie können Ihre Auswahl jederzeit ändern.',
+      details: 'Details',
+      provider: 'Anbieter', services: 'Dienste', purpose: 'Zweck', storage: 'Speicherung', cookies: 'Cookies', thirdCountry: 'Drittland', legalBasis: 'Rechtsgrundlage',
+      necessary: 'Notwendig',
+      necessaryInfo: 'Immer aktiv. Ermöglicht den Betrieb der Website und speichert Ihre Auswahl in diesem Banner.',
+      necessaryProvider: 'Rechtsanwalt Richard Mertens (diese Website)',
+      necessaryPurpose: 'Speicherung Ihrer Datenschutz-Auswahl, damit das Banner nicht bei jedem Aufruf erscheint.',
+      necessaryStorage: '„rm_consent“ im lokalen Speicher Ihres Browsers, 12 Monate',
+      necessaryBasis: '§ 25 Abs. 2 Nr. 2 TDDDG, Art. 6 Abs. 1 lit. c DSGVO',
+      statistics: 'Statistik',
+      statisticsInfo: 'Hilft mir zu verstehen, wie die Website genutzt wird, damit ich sie verbessern kann.',
+      statisticsPurpose: 'Statistische Auswertung der Website-Nutzung (z.&nbsp;B. aufgerufene Seiten, Verweildauer, Gerät, ungefähre Region)',
+      statisticsCookies: '_ga, _ga_* – bis zu 2 Jahre',
+      marketing: 'Marketing',
+      marketingInfo: 'Misst, ob meine Google-Anzeigen zu Anfragen führen, und ermöglicht passende Anzeigen auf anderen Websites.',
+      marketingServices: 'Google Tag Manager, Google Ads (Conversion-Tracking, Remarketing)',
+      marketingPurpose: 'Erfolgsmessung von Anzeigen, Wiedererkennung für Werbung auf anderen Websites',
+      marketingCookies: '_gcl_au – 90 Tage; Cookies auf doubleclick.net/google.com (z.&nbsp;B. IDE) – bis zu 13 Monate',
+      google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland',
+      usa: 'Übermittlung in die USA möglich (EU-US Data Privacy Framework)',
+      consentBasis: 'Ihre Einwilligung, Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG',
+    },
+    en: {
+      title: 'Privacy settings',
+      intro: 'This website uses Google services (Google Tag Manager, Google Analytics, Google Ads) to analyse how the site is used and to measure the success of my advertising. I only use these services with your consent. In the process, data may be transferred to Google in the USA. Your consent is voluntary and can be changed or withdrawn at any time via “Cookie settings” at the bottom of the page. Strictly necessary functions are always active.',
+      privacy: 'Privacy policy', privacyHref: 'privacy.html',
+      imprint: 'Legal notice', imprintHref: 'legal-notice.html',
+      reject: 'Reject all', accept: 'Accept all', settings: 'Settings', save: 'Save selection',
+      settingsTitle: 'Settings',
+      settingsIntro: 'Choose which services you would like to allow. You can change your selection at any time.',
+      details: 'Details',
+      provider: 'Provider', services: 'Services', purpose: 'Purpose', storage: 'Storage', cookies: 'Cookies', thirdCountry: 'Third country', legalBasis: 'Legal basis',
+      necessary: 'Necessary',
+      necessaryInfo: 'Always active. Required for the website to work and to store your choice in this banner.',
+      necessaryProvider: 'Rechtsanwalt Richard Mertens (this website)',
+      necessaryPurpose: 'Stores your privacy choice so that the banner does not reappear on every visit.',
+      necessaryStorage: '“rm_consent” in your browser’s local storage, 12 months',
+      necessaryBasis: 'Section 25(2) no. 2 TDDDG, Art. 6(1)(c) GDPR',
+      statistics: 'Statistics',
+      statisticsInfo: 'Helps me understand how the website is used so that I can improve it.',
+      statisticsPurpose: 'Statistical analysis of website usage (e.g. pages viewed, time spent, device, approximate region)',
+      statisticsCookies: '_ga, _ga_* – up to 2 years',
+      marketing: 'Marketing',
+      marketingInfo: 'Measures whether my Google ads lead to enquiries and enables relevant ads on other websites.',
+      marketingServices: 'Google Tag Manager, Google Ads (conversion tracking, remarketing)',
+      marketingPurpose: 'Measuring the success of ads, recognising visitors for advertising on other websites',
+      marketingCookies: '_gcl_au – 90 days; cookies on doubleclick.net/google.com (e.g. IDE) – up to 13 months',
+      google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland',
+      usa: 'Transfer to the USA possible (EU-US Data Privacy Framework)',
+      consentBasis: 'Your consent, Art. 6(1)(a) GDPR, Section 25(1) TDDDG',
+    },
+  }[LANG];
+
+  const row = (term, value) => `<dt>${term}</dt><dd>${value}</dd>`;
 
   const html = `
-<section class="cc" id="cc" role="dialog" aria-modal="false" aria-labelledby="cc-title" aria-describedby="cc-desc" hidden>
+<section class="cc" id="cc" role="dialog" aria-modal="false" aria-labelledby="cc-title" aria-describedby="cc-desc" lang="${LANG}" hidden>
   <div class="cc__inner">
     <div class="cc__view" data-cc-view="main">
-      <h2 class="cc__title" id="cc-title">Datenschutz-Einstellungen</h2>
-      <p class="cc__text" id="cc-desc">${TEXT.intro}</p>
-      <p class="cc__links"><a href="datenschutz.html">Datenschutzerklärung</a><a href="impressum.html">Impressum</a></p>
+      <h2 class="cc__title" id="cc-title">${L.title}</h2>
+      <p class="cc__text" id="cc-desc">${L.intro}</p>
+      <p class="cc__links"><a href="${L.privacyHref}">${L.privacy}</a><a href="${L.imprintHref}">${L.imprint}</a></p>
       <div class="cc__actions">
-        <button type="button" class="cc__btn" data-cc-action="reject">Alle ablehnen</button>
-        <button type="button" class="cc__btn" data-cc-action="accept">Alle akzeptieren</button>
-        <button type="button" class="cc__link" data-cc-action="settings" aria-controls="cc-settings">Einstellungen</button>
+        <button type="button" class="cc__btn" data-cc-action="reject">${L.reject}</button>
+        <button type="button" class="cc__btn" data-cc-action="accept">${L.accept}</button>
+        <button type="button" class="cc__link" data-cc-action="settings" aria-controls="cc-settings">${L.settings}</button>
       </div>
     </div>
 
     <div class="cc__view" data-cc-view="settings" id="cc-settings" hidden>
-      <h2 class="cc__title" tabindex="-1">Einstellungen</h2>
-      <p class="cc__text">Wählen Sie, welche Dienste Sie zulassen möchten. Sie können Ihre Auswahl jederzeit ändern.</p>
+      <h2 class="cc__title" tabindex="-1">${L.settingsTitle}</h2>
+      <p class="cc__text">${L.settingsIntro}</p>
 
       <div class="cc__cats">
         <div class="cc__cat">
           <div class="cc__cat-head">
-            <label class="cc__cat-label" for="cc-necessary">Notwendig</label>
+            <label class="cc__cat-label" for="cc-necessary">${L.necessary}</label>
             <input class="cc__switch" type="checkbox" role="switch" id="cc-necessary" checked disabled aria-describedby="cc-necessary-info">
           </div>
-          <p class="cc__cat-text" id="cc-necessary-info">Immer aktiv. Ermöglicht den Betrieb der Website und speichert Ihre Auswahl in diesem Banner.</p>
+          <p class="cc__cat-text" id="cc-necessary-info">${L.necessaryInfo}</p>
           <details class="cc__details">
-            <summary>Details</summary>
+            <summary>${L.details}</summary>
             <dl>
-              <dt>Anbieter</dt><dd>Rechtsanwalt Richard Mertens (diese Website)</dd>
-              <dt>Zweck</dt><dd>Speicherung Ihrer Datenschutz-Auswahl, damit das Banner nicht bei jedem Aufruf erscheint.</dd>
-              <dt>Speicherung</dt><dd>„rm_consent“ im lokalen Speicher Ihres Browsers, 12 Monate</dd>
-              <dt>Rechtsgrundlage</dt><dd>§ 25 Abs. 2 Nr. 2 TDDDG, Art. 6 Abs. 1 lit. c DSGVO</dd>
+              ${row(L.provider, L.necessaryProvider)}
+              ${row(L.purpose, L.necessaryPurpose)}
+              ${row(L.storage, L.necessaryStorage)}
+              ${row(L.legalBasis, L.necessaryBasis)}
             </dl>
           </details>
         </div>
 
         <div class="cc__cat">
           <div class="cc__cat-head">
-            <label class="cc__cat-label" for="cc-statistics">Statistik</label>
+            <label class="cc__cat-label" for="cc-statistics">${L.statistics}</label>
             <input class="cc__switch" type="checkbox" role="switch" id="cc-statistics" data-cc-cat="statistics" aria-describedby="cc-statistics-info">
           </div>
-          <p class="cc__cat-text" id="cc-statistics-info">Hilft mir zu verstehen, wie die Website genutzt wird, damit ich sie verbessern kann.</p>
+          <p class="cc__cat-text" id="cc-statistics-info">${L.statisticsInfo}</p>
           <details class="cc__details">
-            <summary>Details</summary>
+            <summary>${L.details}</summary>
             <dl>
-              <dt>Dienste</dt><dd>Google Tag Manager, Google Analytics 4</dd>
-              <dt>Anbieter</dt><dd>Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland</dd>
-              <dt>Zweck</dt><dd>Statistische Auswertung der Website-Nutzung (z.&nbsp;B. aufgerufene Seiten, Verweildauer, Gerät, ungefähre Region)</dd>
-              <dt>Cookies</dt><dd>_ga, _ga_* – bis zu 2 Jahre</dd>
-              <dt>Drittland</dt><dd>Übermittlung in die USA möglich (EU-US Data Privacy Framework)</dd>
-              <dt>Rechtsgrundlage</dt><dd>Ihre Einwilligung, Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG</dd>
+              ${row(L.services, 'Google Tag Manager, Google Analytics 4')}
+              ${row(L.provider, L.google)}
+              ${row(L.purpose, L.statisticsPurpose)}
+              ${row(L.cookies, L.statisticsCookies)}
+              ${row(L.thirdCountry, L.usa)}
+              ${row(L.legalBasis, L.consentBasis)}
             </dl>
           </details>
         </div>
 
         <div class="cc__cat">
           <div class="cc__cat-head">
-            <label class="cc__cat-label" for="cc-marketing">Marketing</label>
+            <label class="cc__cat-label" for="cc-marketing">${L.marketing}</label>
             <input class="cc__switch" type="checkbox" role="switch" id="cc-marketing" data-cc-cat="marketing" aria-describedby="cc-marketing-info">
           </div>
-          <p class="cc__cat-text" id="cc-marketing-info">Misst, ob meine Google-Anzeigen zu Anfragen führen, und ermöglicht passende Anzeigen auf anderen Websites.</p>
+          <p class="cc__cat-text" id="cc-marketing-info">${L.marketingInfo}</p>
           <details class="cc__details">
-            <summary>Details</summary>
+            <summary>${L.details}</summary>
             <dl>
-              <dt>Dienste</dt><dd>Google Tag Manager, Google Ads (Conversion-Tracking, Remarketing)</dd>
-              <dt>Anbieter</dt><dd>Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland</dd>
-              <dt>Zweck</dt><dd>Erfolgsmessung von Anzeigen, Wiedererkennung für Werbung auf anderen Websites</dd>
-              <dt>Cookies</dt><dd>_gcl_au – 90 Tage; Cookies auf doubleclick.net/google.com (z.&nbsp;B. IDE) – bis zu 13 Monate</dd>
-              <dt>Drittland</dt><dd>Übermittlung in die USA möglich (EU-US Data Privacy Framework)</dd>
-              <dt>Rechtsgrundlage</dt><dd>Ihre Einwilligung, Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG</dd>
+              ${row(L.services, L.marketingServices)}
+              ${row(L.provider, L.google)}
+              ${row(L.purpose, L.marketingPurpose)}
+              ${row(L.cookies, L.marketingCookies)}
+              ${row(L.thirdCountry, L.usa)}
+              ${row(L.legalBasis, L.consentBasis)}
             </dl>
           </details>
         </div>
       </div>
 
-      <p class="cc__links"><a href="datenschutz.html">Datenschutzerklärung</a><a href="impressum.html">Impressum</a></p>
+      <p class="cc__links"><a href="${L.privacyHref}">${L.privacy}</a><a href="${L.imprintHref}">${L.imprint}</a></p>
       <div class="cc__actions">
-        <button type="button" class="cc__btn" data-cc-action="reject">Alle ablehnen</button>
-        <button type="button" class="cc__btn" data-cc-action="save">Auswahl speichern</button>
-        <button type="button" class="cc__btn" data-cc-action="accept">Alle akzeptieren</button>
+        <button type="button" class="cc__btn" data-cc-action="reject">${L.reject}</button>
+        <button type="button" class="cc__btn" data-cc-action="save">${L.save}</button>
+        <button type="button" class="cc__btn" data-cc-action="accept">${L.accept}</button>
       </div>
     </div>
   </div>

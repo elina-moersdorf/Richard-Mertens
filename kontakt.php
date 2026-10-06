@@ -12,7 +12,7 @@ const MAIL_TO     = 'info@mertens-anwalt.de';      // Empfänger der Formularanf
 const MAIL_FROM   = 'info@mertens-anwalt.de';      // muss ein bestehendes STRATO-Postfach im selben Paket sein
 const SITE_NAME   = 'Website Richard Mertens';
 const MIN_SECONDS = 3;                                 // schneller ausgefüllte Formulare gelten als Spam
-const TOPICS      = ['Scheidung', 'Unterhalt', 'Sorge- und Umgangsrecht', 'Zugewinn und Vermögen', 'Sonstiges'];
+const TOPICS      = ['Scheidung', 'Häusliche Gewalt', 'Unterhalt', 'Sorge- und Umgangsrecht', 'Zugewinn und Vermögen', 'Internationales Familienrecht', 'Sonstiges'];
 
 // Anhänge: werden nicht gespeichert, sondern nur an die E-Mail gehängt
 const MAX_FILES      = 5;

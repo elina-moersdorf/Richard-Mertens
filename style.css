@@ -533,6 +533,8 @@ html.lenis body { height: auto; }
   line-height: 1.45;
   color: var(--rm-white);
 }
+.checklist li { text-wrap: balance; } /* zweizeilige Punkte gleichmäßig umbrechen, kein einzelnes Wort in Zeile 2 */
+.keep { display: inline-block; }      /* Wortgruppe rutscht nur gemeinsam in die nächste Zeile */
 .checklist .icon {
   margin-top: 1px;
   color: var(--rm-gold);
@@ -549,23 +551,7 @@ html.lenis body { height: auto; }
 /* Mobil: Buttons vor die Häkchen, damit der Anruf ohne Scrollen erreichbar ist */
 .hero__ctas { order: 1; }
 .hero__note { order: 2; }
-.hero__place,
 .hero__content .checklist { order: 3; }
-
-/* Überschrift über den Häkchen */
-.hero__place {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: -10px; /* rückt näher an die Liste, zu der sie gehört */
-  font: 600 17px/1.3 var(--font-sans);
-  color: var(--rm-white);
-}
-.hero__place .icon {
-  width: 18px;
-  height: 18px;
-  color: var(--rm-gold);
-}
 .hero__ctas .btn { width: 100%; }
 
 .hero__note {
@@ -646,9 +632,7 @@ html.lenis body { height: auto; }
 @media (min-width: 768px) {
   .hero__ctas,
   .hero__note,
-  .hero__place,
   .hero__content .checklist { order: 0; }
-  .hero__place { font-size: 18px; }
 
   .hero__content { gap: 26px; }
   .hero__lead { font-size: 19px; line-height: 1.55; }

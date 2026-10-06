@@ -22,6 +22,10 @@
       sending: 'Ihre Anfrage wird gesendet …',
       success: 'Vielen Dank. Ihre Anfrage ist angekommen. Ich melde mich in der Regel innerhalb von 24 Stunden bei Ihnen.',
       error: 'Leider konnte Ihre Anfrage nicht gesendet werden. Bitte versuchen Sie es erneut oder rufen Sie mich an: 030 98312332.',
+      fileCount: 'Bitte wählen Sie höchstens 5 Dateien aus.',
+      fileType: (n) => `„${n}“ hat ein nicht erlaubtes Format. Erlaubt sind PDF, JPG, PNG und Word.`,
+      fileSize: (n) => `„${n}“ ist größer als 10 MB.`,
+      fileTotal: 'Die Dateien sind zusammen größer als 15 MB.',
     },
     en: {
       more: 'Read more',
@@ -32,6 +36,10 @@
       sending: 'Sending your enquiry …',
       success: 'Thank you. Your enquiry has been received. I will usually get back to you within 24 hours.',
       error: 'Unfortunately, your enquiry could not be sent. Please try again or call me on +49 30 98312332.',
+      fileCount: 'Please select no more than 5 files.',
+      fileType: (n) => `“${n}” is not an accepted format. Accepted formats are PDF, JPG, PNG and Word.`,
+      fileSize: (n) => `“${n}” is larger than 10 MB.`,
+      fileTotal: 'The files are larger than 15 MB in total.',
     },
   }[LANG];
 
@@ -138,6 +146,12 @@
     const setError = (field, text) => {
       const wrap = field.closest('.field');
       let note = wrap.querySelector('.field__error');
+      const hint = wrap.querySelector('.field__hint');
+      const describe = (...ids) => {
+        const value = ids.filter(Boolean).join(' ');
+        if (value) field.setAttribute('aria-describedby', value);
+        else field.removeAttribute('aria-describedby');
+      };
       wrap.classList.toggle('is-invalid', Boolean(text));
       field.setAttribute('aria-invalid', String(Boolean(text)));
       if (text) {
@@ -146,16 +160,35 @@
           note.className = 'field__error';
           note.id = `${field.id}-error`;
           wrap.append(note);
-          field.setAttribute('aria-describedby', note.id);
+          describe(note.id, hint && hint.id);
         }
         note.textContent = text;
       } else if (note) {
         note.remove();
-        field.removeAttribute('aria-describedby');
+        describe(hint && hint.id);
       }
     };
 
+    // Anhänge: höchstens 5 Dateien, je 10 MB, zusammen 15 MB, nur PDF/JPG/PNG/Word
+    const MB = 1024 * 1024;
+    const allowed = /\.(pdf|jpe?g|png|docx?)$/i;
+    const fileError = (field) => {
+      const files = [...field.files];
+      if (files.length > 5) return T.fileCount;
+      const wrongType = files.find((f) => !allowed.test(f.name));
+      if (wrongType) return T.fileType(wrongType.name);
+      const tooBig = files.find((f) => f.size > 10 * MB);
+      if (tooBig) return T.fileSize(tooBig.name);
+      if (files.reduce((sum, f) => sum + f.size, 0) > 15 * MB) return T.fileTotal;
+      return '';
+    };
+
     const validate = (field) => {
+      if (field.type === 'file') {
+        const text = fileError(field);
+        setError(field, text);
+        return !text;
+      }
       const v = field.validity;
       const text = v.valid ? '' : (v.valueMissing ? messages.valueMissing : messages.typeMismatch);
       setError(field, text);
@@ -164,7 +197,7 @@
 
     const fields = [...form.querySelectorAll('.field input, .field select, .field textarea')];
     fields.forEach((field) => {
-      field.addEventListener('blur', () => validate(field));
+      field.addEventListener(field.type === 'file' ? 'change' : 'blur', () => validate(field));
     });
 
     form.addEventListener('submit', async (event) => {
@@ -186,12 +219,17 @@
           headers: { Accept: 'application/json' },
         });
         const result = await response.json();
-        if (!response.ok || !result.success) throw new Error(result.message || 'Fehler');
+        if (!response.ok || !result.success) {
+          // abgelehnte Eingaben (z. B. Anhänge): Hinweis des Servers zeigen
+          const err = new Error(result.message || '');
+          err.serverMessage = response.status === 400 ? result.message : '';
+          throw err;
+        }
         form.reset();
         status.textContent = T.success;
       } catch (error) {
         status.classList.add('is-error');
-        status.textContent = T.error;
+        status.textContent = error.serverMessage || T.error;
       } finally {
         submit.disabled = false;
       }

@@ -14,7 +14,7 @@
 
   <link rel="preload" href="fonts/SourceSerif4-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/SourceSans3-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=17">
+  <link rel="stylesheet" href="style.css?v=18">
   <!-- Consent Mode v2 + Banner: muss vor allen Google-Diensten laden -->
   <script src="consent.js?v=2"></script>
 
@@ -620,7 +620,7 @@
         </div>
 
         <!-- Versand über kontakt.php auf dem eigenen STRATO-Webspace (kein Drittanbieter) -->
-        <form class="contact-form" action="kontakt.php" method="POST" novalidate>
+        <form class="contact-form" action="kontakt.php" method="POST" enctype="multipart/form-data" novalidate>
           <input type="hidden" name="ts" value="">
           <div class="contact-form__hp" aria-hidden="true">
             <label for="f-website">Bitte leer lassen</label>
@@ -655,6 +655,11 @@
           <div class="field">
             <label for="f-message">Nachricht</label>
             <textarea id="f-message" name="message" rows="5" placeholder="Worum geht es? Ein paar Sätze genügen." required></textarea>
+          </div>
+          <div class="field">
+            <label for="f-files">Unterlagen <span class="field__opt">(optional)</span></label>
+            <input id="f-files" name="anhang[]" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" aria-describedby="f-files-hint">
+            <p class="field__hint" id="f-files-hint">Bis zu 5 Dateien (PDF, JPG, PNG, Word), zusammen höchstens 15 MB.</p>
           </div>
 
           <button class="btn btn--primary btn--lg contact-form__submit" type="submit">
@@ -714,6 +719,6 @@
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="vendor/lenis.min.js" defer></script>
-  <script src="script.js?v=16" defer></script>
+  <script src="script.js?v=17" defer></script>
 </body>
 </html>

@@ -19,6 +19,23 @@
   font-style: normal;
   font-display: swap;
 }
+/* Kyrillisch (russische Seiten): wird nur geladen, wenn kyrillische Zeichen vorkommen */
+@font-face {
+  font-family: 'Source Sans 3';
+  src: url('fonts/SourceSans3-cyrillic-variable.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('fonts/SourceSerif4-cyrillic-variable.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
 
 /* ---------- Tokens ---------- */
 :root {
@@ -135,7 +152,7 @@ html.lenis body { height: auto; }
 .skip-link:focus { top: 12px; }
 
 .hide-xs { display: none; }
-@media (min-width: 400px) { .hide-xs { display: inline; } }
+@media (min-width: 480px) { .hide-xs { display: inline; } }
 
 /* ---------- Icons (Lucide, Strich) ---------- */
 .icon {
@@ -275,6 +292,17 @@ html.lenis body { height: auto; }
 @media (min-width: 900px) {
   .topbar { display: block; }
 }
+
+/* Sprachwahl: Auf schmalen Bildschirmen reicht die Navigation nicht für Name, Sprachen,
+   Telefon und Anfrage-Button. Dort sitzt die Sprachwahl in einer schmalen Leiste darüber. */
+.topbar .lang-switch { display: none; }
+@media (max-width: 639px) {
+  .topbar { display: block; }
+  .topbar__list { display: none; }
+  .topbar .lang-switch { display: flex; margin-right: -4px; }
+  .topbar .lang-switch a { min-height: 40px; }
+  .site-nav .lang-switch--nav { display: none; }
+}
 @media (min-width: 1100px) {
   .topbar__address { display: inline-flex; }
 }
@@ -310,6 +338,7 @@ html.lenis body { height: auto; }
   letter-spacing: .005em;
   white-space: nowrap;
 }
+.brand__degree { font-size: .86em; }
 .brand__sub {
   font: 600 10px/1.2 var(--font-sans);
   letter-spacing: .18em;
@@ -348,6 +377,13 @@ html.lenis body { height: auto; }
   text-underline-offset: 6px;
 }
 .lang-switch__sep { color: var(--rm-deep-line); }
+
+.site-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 @media (max-width: 479px) {
   .site-nav__inner { gap: 8px; }
   .site-nav__actions { gap: 4px; }
@@ -356,14 +392,27 @@ html.lenis body { height: auto; }
   .lang-switch a { min-width: 24px; padding: 0 2px; }
 }
 @media (max-width: 399px) {
+  :root { --page-pad: 16px; }
   .brand__name { font-size: 18px; }
   .brand__sub { font-size: 9px; letter-spacing: .14em; }
 }
-
-.site-nav__actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* Rechtsseiten: auf kleinen Handys hat die Sprachwahl Vorrang vor dem Anfrage-Button */
+@media (max-width: 419px) {
+  .nav-cta--optional { display: none; }
+}
+/* sehr schmale Geräte (z. B. 320 px) */
+@media (max-width: 359px) {
+  .brand__name { font-size: 15px; }
+  .brand__sub { font-size: 8px; letter-spacing: .1em; }
+  .site-nav__actions .icon-btn { width: 40px; height: 40px; }
+  .site-nav__actions .btn--sm { padding: 10px; }
+}
+/* Russisch: kyrillische Wörter sind breiter – Button in der Navigation etwas kompakter */
+@media (max-width: 399px) {
+  :lang(ru) .site-nav__actions .btn--sm { padding: 10px 8px; font-size: 14px; }
+}
+@media (max-width: 359px) {
+  :lang(ru) .site-nav__actions .btn--sm { padding: 10px 5px; }
 }
 
 @media (min-width: 1100px) {
@@ -445,6 +494,19 @@ html.lenis body { height: auto; }
 @container (min-width: 443px) {
   .hero__hl { white-space: nowrap; }
 }
+/* sehr schmale Geräte: „Scheidungsanwalt“ passt sicher in die Zeile */
+@media (max-width: 359px) {
+  .hero__title { font-size: 2rem; }
+}
+/* Russisch: Die hinterlegte Zeile ist ca. 15,6 em breit – Schrift entsprechend kleiner,
+   damit sie ab einer Spaltenbreite von 509 px (= 2rem × 15,9) in einer Zeile steht */
+:lang(ru) .hero__title { font-size: clamp(2rem, 100cqi / 15.9, 3.1rem); }
+@container (min-width: 443px) {
+  :lang(ru) .hero__hl { white-space: normal; }
+}
+@container (min-width: 509px) {
+  :lang(ru) .hero__hl { white-space: nowrap; }
+}
 .hero__hl-text {
   padding: .02em .2em .08em;
   background: var(--rm-gold);
@@ -487,7 +549,23 @@ html.lenis body { height: auto; }
 /* Mobil: Buttons vor die Häkchen, damit der Anruf ohne Scrollen erreichbar ist */
 .hero__ctas { order: 1; }
 .hero__note { order: 2; }
+.hero__place,
 .hero__content .checklist { order: 3; }
+
+/* Überschrift über den Häkchen */
+.hero__place {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: -10px; /* rückt näher an die Liste, zu der sie gehört */
+  font: 600 17px/1.3 var(--font-sans);
+  color: var(--rm-white);
+}
+.hero__place .icon {
+  width: 18px;
+  height: 18px;
+  color: var(--rm-gold);
+}
 .hero__ctas .btn { width: 100%; }
 
 .hero__note {
@@ -568,7 +646,9 @@ html.lenis body { height: auto; }
 @media (min-width: 768px) {
   .hero__ctas,
   .hero__note,
+  .hero__place,
   .hero__content .checklist { order: 0; }
+  .hero__place { font-size: 18px; }
 
   .hero__content { gap: 26px; }
   .hero__lead { font-size: 19px; line-height: 1.55; }
@@ -799,15 +879,112 @@ button.text-link {
    ========================================================= */
 .services__grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
 }
 .service {
-  display: grid;
-  align-content: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  padding: 32px 28px;
+  padding: 32px 28px 26px;
   background: var(--rm-white);
   border-top: 2px solid var(--rm-gold);
+  transition: border-color var(--dur-base) var(--ease-calm);
+}
+.service__title { text-wrap: balance; }
+
+/* „Weiterlesen“: Die Schaltfläche deckt das ganze Kästchen ab (Klick überall möglich) */
+.service__toggle {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding: 10px 0 0;
+  border: 0;
+  background: none;
+  font: 600 16px/1.3 var(--font-sans);
+  color: var(--rm-gold-dark);
+  text-align: left;
+  cursor: pointer;
+}
+.service__toggle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.service__toggle:focus-visible { outline: none; }
+.service:has(.service__toggle:focus-visible) { outline: 2px solid var(--rm-gold); outline-offset: 2px; }
+.service__plus {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform var(--dur-base) var(--ease-calm);
+}
+.service__plus::before,
+.service__plus::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+.service__plus::after { transform: translateY(-50%) rotate(90deg); }
+.services__grid.is-enhanced .service:hover,
+.service.is-active { border-top-color: var(--rm-gold-dark); }
+.service:hover .service__toggle,
+.service.is-active .service__toggle { color: var(--rm-ink); }
+.service.is-active .service__plus { transform: rotate(45deg); }
+
+/* Ausführlicher Text: breites Feld unter der Reihe des geöffneten Kästchens */
+.service__panel {
+  position: relative;
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-areas: "text" "side";
+  gap: 24px;
+  padding: 30px 24px 26px;
+  background: var(--rm-white);
+  border-left: 2px solid var(--rm-gold);
+}
+.services__grid.is-enhanced .service__toggle { display: inline-flex; }
+.services__grid.is-enhanced .service__panel { display: none; }
+.services__grid.is-enhanced .service__panel.is-open { display: grid; }
+/* kleiner Pfeil zeigt auf das geöffnete Kästchen */
+.services__grid.is-enhanced .service__panel::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: var(--notch-x, 40px);
+  border: 9px solid transparent;
+  border-top: 0;
+  border-bottom-color: var(--rm-white);
+  transform: translateX(-50%);
+}
+.service__panel-side { grid-area: side; display: grid; justify-items: start; gap: 8px; }
+.service__panel-title { display: none; }
+.service__panel-text {
+  grid-area: text;
+  display: grid;
+  gap: 16px;
+  max-width: 68ch;
+}
+.service__panel-text p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--rm-ink-2);
+}
+.service__panel-text a { color: var(--rm-gold-dark); }
+.service__panel-text a:hover { color: var(--rm-ink); }
+.service__panel-text .service__alert {
+  padding-left: 14px;
+  border-left: 2px solid var(--rm-gold);
+  font-weight: 600;
+  color: var(--rm-ink);
 }
 .service__icon {
   width: 48px;
@@ -853,7 +1030,24 @@ button.text-link {
 
 @media (min-width: 768px) {
   .services__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-  .service { padding: 40px 36px; }
+  .service { padding: 40px 36px 32px; }
+  .service__panel {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    grid-template-areas: "side text";
+    gap: 48px;
+    padding: 44px 44px 40px;
+    border-left: 0;
+    border-top: 2px solid var(--rm-gold);
+  }
+  .service__panel-side { align-content: start; gap: 16px; }
+  .service__panel-title {
+    display: block;
+    font: 600 clamp(1.4rem, 1.2rem + .6vw, 1.75rem)/1.25 var(--font-serif);
+    color: var(--rm-ink);
+    text-wrap: balance;
+  }
+  .service__panel-text p { font-size: 18px; }
+  .services__grid.is-enhanced .service__panel::before { top: -11px; border-bottom-color: var(--rm-gold); }
   .services__more {
     grid-template-columns: auto 1fr auto;
     align-items: center;
@@ -862,8 +1056,10 @@ button.text-link {
     padding: 28px 36px;
   }
 }
+@media (min-width: 1100px) {
+  .services__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 @media (min-width: 1200px) {
-  .services__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .service__icon { width: 56px; height: 56px; }
 }
 
@@ -872,13 +1068,14 @@ button.text-link {
    ========================================================= */
 .benefits__grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 56px;
 }
 
 .numbered { margin: 0; padding: 0; list-style: none; }
 .numbered__item {
   display: grid;
-  grid-template-columns: 44px 1fr;
+  grid-template-columns: 44px minmax(0, 1fr);
   gap: 16px;
   padding: 28px 0;
   border-top: 1px solid var(--rm-stone-line);
@@ -904,6 +1101,7 @@ button.text-link {
 
 .why {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
   justify-items: start;
   gap: 24px;
@@ -922,7 +1120,7 @@ button.text-link {
 }
 
 @media (min-width: 768px) {
-  .numbered__item { grid-template-columns: 64px 1fr; padding: 32px 0; }
+  .numbered__item { grid-template-columns: 64px minmax(0, 1fr); padding: 32px 0; }
   .why { padding: 48px 44px; }
   .why__list li { font-size: 18px; }
   .why__cta { width: auto; }
@@ -1271,6 +1469,15 @@ button.text-link {
   transition: color var(--dur-fast) var(--ease-calm);
 }
 .accordion__q::-webkit-details-marker { display: none; }
+/* Themenzeile über einer Frage (z. B. „Islamische Brautgaben“) */
+.accordion__kicker {
+  display: block;
+  margin-bottom: 6px;
+  font: 600 12px/1.3 var(--font-sans);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--rm-gold-dark);
+}
 .accordion__q:hover { color: var(--rm-gold-dark); }
 .accordion__plus {
   position: relative;
@@ -1693,7 +1900,7 @@ button.text-link {
   border-top: 1px solid var(--rm-deep-line);
   font-size: 14px;
 }
-.site-footer__legal { display: flex; gap: 24px; }
+.site-footer__legal { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 
 @media (min-width: 768px) {
   .site-footer { padding-block: 96px 36px; }
@@ -1905,6 +2112,13 @@ button.text-link {
   margin: 28px 0 10px;
   font: 600 18px/1.4 var(--font-sans);
   color: var(--rm-ink);
+}
+/* lange Wörter („Berufshaftpflichtversicherung“) passen auch auf kleine Handys */
+.legal h1,
+.legal h2 { hyphens: auto; overflow-wrap: break-word; }
+@media (max-width: 399px) {
+  .legal h1 { font-size: 1.75rem; }
+  .legal h2 { font-size: 1.2rem; }
 }
 .legal p,
 .legal li {

@@ -134,7 +134,7 @@
   }
 
   /* ---------- 3. Banner (Texte je Sprache, Sprache aus <html lang>) ---------- */
-  const LANG = document.documentElement.lang === 'en' ? 'en' : 'de';
+  const LANG = ['en', 'ru'].includes(document.documentElement.lang) ? document.documentElement.lang : 'de';
   const L = {
     de: {
       title: 'Datenschutz-Einstellungen',
@@ -193,6 +193,35 @@
       google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland',
       usa: 'Transfer to the USA possible (EU-US Data Privacy Framework)',
       consentBasis: 'Your consent, Art. 6(1)(a) GDPR, Section 25(1) TDDDG',
+    },
+    ru: {
+      title: 'Настройки конфиденциальности',
+      intro: 'На этом сайте я использую сервисы Google (Google Tag Manager, Google Analytics, Google Ads), чтобы статистически анализировать использование сайта и оценивать эффективность своей рекламы. Эти сервисы я использую только с Вашего согласия. При этом данные могут передаваться Google в США. Ваше согласие добровольно, его можно в любой момент изменить или отозвать через «Настройки cookie» внизу страницы. Технически необходимые функции активны всегда.',
+      privacy: 'Политика конфиденциальности', privacyHref: 'privacy.html',
+      imprint: 'Выходные данные', imprintHref: 'legal-notice.html',
+      reject: 'Отклонить все', accept: 'Принять все', settings: 'Настройки', save: 'Сохранить выбор',
+      settingsTitle: 'Настройки',
+      settingsIntro: 'Выберите, какие сервисы Вы хотите разрешить. Вы можете изменить свой выбор в любое время.',
+      details: 'Подробнее',
+      provider: 'Поставщик', services: 'Сервисы', purpose: 'Цель', storage: 'Хранение', cookies: 'Cookie', thirdCountry: 'Третья страна', legalBasis: 'Правовое основание',
+      necessary: 'Необходимые',
+      necessaryInfo: 'Всегда активны. Нужны для работы сайта и сохранения Вашего выбора в этом окне.',
+      necessaryProvider: 'Rechtsanwalt Richard Mertens (этот сайт)',
+      necessaryPurpose: 'Сохранение Вашего выбора настроек конфиденциальности, чтобы окно не появлялось при каждом посещении.',
+      necessaryStorage: '«rm_consent» в локальном хранилище Вашего браузера, 12 месяцев',
+      necessaryBasis: '§ 25 абз. 2 п. 2 TDDDG, ст. 6 абз. 1 лит. c GDPR (DSGVO)',
+      statistics: 'Статистика',
+      statisticsInfo: 'Помогает мне понять, как используется сайт, чтобы я мог его улучшить.',
+      statisticsPurpose: 'Статистический анализ использования сайта (например, просмотренные страницы, время на сайте, устройство, приблизительный регион)',
+      statisticsCookies: '_ga, _ga_* – до 2 лет',
+      marketing: 'Маркетинг',
+      marketingInfo: 'Показывает, приводят ли мои объявления в Google к запросам, и позволяет показывать подходящую рекламу на других сайтах.',
+      marketingServices: 'Google Tag Manager, Google Ads (отслеживание конверсий, ремаркетинг)',
+      marketingPurpose: 'Оценка эффективности рекламы, повторное распознавание посетителей для рекламы на других сайтах',
+      marketingCookies: '_gcl_au – 90 дней; cookie на doubleclick.net/google.com (например, IDE) – до 13 месяцев',
+      google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ирландия',
+      usa: 'Возможна передача в США (EU-US Data Privacy Framework)',
+      consentBasis: 'Ваше согласие, ст. 6 абз. 1 лит. a GDPR (DSGVO), § 25 абз. 1 TDDDG',
     },
   }[LANG];
 

@@ -29,21 +29,30 @@ const FILE_TYPES = [
 ];
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
-$isEnglish = (($_POST['lang'] ?? '') === 'en');   // englisches Formular unter /en/
+// Sprache des Formulars: Deutsch (Startseite), Englisch (/en/) oder Russisch (/ru/).
+// Ist $_POST leer (Upload zu groß), wird sie aus der aufrufenden Seite abgeleitet.
+$lang = $_POST['lang'] ?? '';
+if ($lang === '' && preg_match('#/(en|ru)/#', (string)parse_url($_SERVER['HTTP_REFERER'] ?? '', PHP_URL_PATH), $m)) {
+    $lang = $m[1];
+}
+$lang = in_array($lang, ['en', 'ru'], true) ? $lang : 'de';
+
+const LANG_NAMES = ['de' => 'Deutsch', 'en' => 'Englisch', 'ru' => 'Russisch'];
+const TARGETS    = [   // ohne JavaScript: Bestätigungsseite bzw. zurück zum Formular
+    'de' => ['danke.html', 'index.html#kontakt'],
+    'en' => ['en/thank-you.html', 'en/#contact'],
+    'ru' => ['ru/thank-you.html', 'ru/#contact'],
+];
 
 function respond(bool $ok, string $message, bool $json): never
 {
-    global $isEnglish;
+    global $lang;
     if ($json) {
         header('Content-Type: application/json; charset=utf-8');
         http_response_code($ok ? 200 : 400);
         echo json_encode(['success' => $ok, 'message' => $message], JSON_UNESCAPED_UNICODE);
     } else {
-        // ohne JavaScript: zurück zur Seite bzw. Bestätigungsseite der jeweiligen Sprache
-        $target = $isEnglish
-            ? ($ok ? 'en/thank-you.html' : 'en/#contact')
-            : ($ok ? 'danke.html' : 'index.html#kontakt');
-        header('Location: ' . $target, true, 303);
+        header('Location: ' . TARGETS[$lang][$ok ? 0 : 1], true, 303);
     }
     exit;
 }
@@ -53,13 +62,19 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(false, 'Ungültige Anfrage.', $wantsJson);
 }
 
-$fileError = $isEnglish
-    ? 'The documents could not be accepted. Please send up to 5 files (PDF, JPG, PNG, Word), 15 MB in total.'
-    : 'Die Unterlagen konnten nicht angenommen werden. Bitte senden Sie bis zu 5 Dateien (PDF, JPG, PNG, Word), zusammen höchstens 15 MB.';
+$fileError = [
+    'de' => 'Die Unterlagen konnten nicht angenommen werden. Bitte senden Sie bis zu 5 Dateien (PDF, JPG, PNG, Word), zusammen höchstens 15 MB.',
+    'en' => 'The documents could not be accepted. Please send up to 5 files (PDF, JPG, PNG, Word), 15 MB in total.',
+    'ru' => 'Не удалось принять документы. Пожалуйста, отправьте не более 5 файлов (PDF, JPG, PNG, Word) общим размером до 15 МБ.',
+][$lang];
 
 // Upload größer als die Server-Grenze: PHP verwirft dann den ganzen Formularinhalt
 if (empty($_POST) && (int)($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
-    respond(false, 'Die Unterlagen sind zu groß. Bitte senden Sie zusammen höchstens 15 MB. / The documents are too large. Please send no more than 15 MB in total.', $wantsJson);
+    respond(false, [
+        'de' => 'Die Unterlagen sind zu groß. Bitte senden Sie zusammen höchstens 15 MB.',
+        'en' => 'The documents are too large. Please send no more than 15 MB in total.',
+        'ru' => 'Документы слишком большие. Пожалуйста, отправьте не более 15 МБ в сумме.',
+    ][$lang], $wantsJson);
 }
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
@@ -137,7 +152,7 @@ if (is_array($upload) && is_array($upload['name'])) {
 
 /* ---------- E-Mail an die Kanzlei ---------- */
 $subject = mb_encode_mimeheader(
-    'Neue Anfrage über die Website' . ($isEnglish ? ' (Englisch)' : '') . ': ' . $topic,
+    'Neue Anfrage über die Website' . ($lang !== 'de' ? ' (' . LANG_NAMES[$lang] . ')' : '') . ': ' . $topic,
     'UTF-8',
     'B'
 );
@@ -148,7 +163,7 @@ $body = "Neue Anfrage über das Kontaktformular\n"
       . "E-Mail:   {$email}\n"
       . "Telefon:  " . ($phone !== '' ? $phone : '–') . "\n"
       . "Anliegen: {$topic}\n"
-      . 'Sprache:  ' . ($isEnglish ? 'Englisch (Anfrage über die englische Seite)' : 'Deutsch') . "\n\n"
+      . 'Sprache:  ' . ($lang === 'de' ? 'Deutsch' : LANG_NAMES[$lang] . ' (Anfrage über die ' . ['en' => 'englische', 'ru' => 'russische'][$lang] . ' Seite)') . "\n\n"
       . "Nachricht:\n{$message}\n\n"
       . 'Anhänge:  ' . ($attachments ? implode(', ', array_column($attachments, 'name')) : '–') . "\n\n"
       . "-------------------------------------\n"

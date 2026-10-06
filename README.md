@@ -10,11 +10,13 @@ Gehostet bei STRATO (Hosting Basic, PHP 8.3).
 | `index.html` | Landingpage |
 | `impressum.html`, `datenschutz.html` | Rechtstexte |
 | `danke.html` | Bestätigung nach dem Formularversand (ohne JavaScript) |
-| `en/` | Englische Fassung: `index.html`, `legal-notice.html`, `privacy.html`, `thank-you.html` – Umschalter „DE \| EN“ in der Kopfzeile, `hreflang`-Verweise auf allen Seiten |
+| `en/` | Englische Fassung: `index.html`, `legal-notice.html`, `privacy.html`, `thank-you.html` |
+| `ru/` | Russische Fassung, gleiche Dateinamen wie `en/` – Umschalter „DE \| EN \| RU“ in der Kopfzeile (auf Handys in der schmalen Leiste darüber), `hreflang`-Verweise auf allen Seiten |
 | `style.css`, `script.js` | Gestaltung und Interaktion |
 | `consent.js` | Consent-Banner mit Google Consent Mode v2 – **GTM-ID eintragen** |
 | `kontakt.php` | Formularversand per E-Mail über den STRATO-Webspace |
-| `fonts/`, `vendor/`, `assets/img/` | Schriften, Bibliotheken (GSAP, Lenis), optimierte Bilder |
+| `fonts/`, `vendor/`, `assets/img/` | Schriften (inkl. kyrillischer Zeichensatz, lädt nur bei Bedarf), Bibliotheken (GSAP, Lenis), optimierte Bilder |
+| `.user.ini` | PHP-Upload-Grenzen für die Anhänge im Formular |
 | `GTM-ANLEITUNG.md` | Einrichtung von Google Tag Manager und Google Ads |
 
 ## Vor dem Livegang

@@ -8,15 +8,16 @@
   <meta name="theme-color" content="#0F1B2D">
   <link rel="alternate" hreflang="de" href="https://mertens-rechtsanwalt.de/">
   <link rel="alternate" hreflang="en" href="https://mertens-rechtsanwalt.de/en/">
+  <link rel="alternate" hreflang="ru" href="https://mertens-rechtsanwalt.de/ru/">
   <link rel="alternate" hreflang="x-default" href="https://mertens-rechtsanwalt.de/">
 
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
 
   <link rel="preload" href="fonts/SourceSerif4-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/SourceSans3-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=18">
+  <link rel="stylesheet" href="style.css?v=20">
   <!-- Consent Mode v2 + Banner: muss vor allen Google-Diensten laden -->
-  <script src="consent.js?v=2"></script>
+  <script src="consent.js?v=3"></script>
 
   <script type="application/ld+json">
   {
@@ -67,14 +68,16 @@
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         Vertrauliche Beratung
       </p>
+      <!-- Sprachwahl auf schmalen Bildschirmen (dort ist in der Navigation kein Platz) -->
+      <div class="lang-switch" role="navigation" aria-label="Sprache wählen / Choose language / Выбор языка"><a href="index.html" lang="de" hreflang="de" aria-current="true" aria-label="Deutsch">DE</a><span class="lang-switch__sep" aria-hidden="true">|</span><a href="en/" lang="en" hreflang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">|</span><a href="ru/" lang="ru" hreflang="ru" aria-label="Русский">RU</a></div>
     </div>
   </div>
 
   <!-- Navigation (bleibt beim Scrollen sichtbar) -->
   <header class="site-nav">
     <nav class="container site-nav__inner" aria-label="Hauptnavigation">
-      <a class="brand" href="#start" aria-label="Richard Mertens, Rechtsanwalt in Berlin – zum Seitenanfang">
-        <span class="brand__name">Richard Mertens</span>
+      <a class="brand" href="#start" aria-label="Richard Mertens, LL.M., Rechtsanwalt in Berlin – zum Seitenanfang">
+        <span class="brand__name">Richard Mertens<span class="brand__degree">, LL.M.</span></span>
         <span class="brand__sub">Rechtsanwalt · Berlin</span>
       </a>
 
@@ -86,7 +89,7 @@
       </ul>
 
       <div class="site-nav__actions">
-        <div class="lang-switch" role="navigation" aria-label="Sprache wählen / Choose language"><a href="index.html" lang="de" hreflang="de" aria-current="true" aria-label="Deutsch">DE</a><span class="lang-switch__sep" aria-hidden="true">|</span><a href="en/" lang="en" hreflang="en" aria-label="English">EN</a></div>
+        <div class="lang-switch lang-switch--nav" role="navigation" aria-label="Sprache wählen / Choose language / Выбор языка"><a href="index.html" lang="de" hreflang="de" aria-current="true" aria-label="Deutsch">DE</a><span class="lang-switch__sep" aria-hidden="true">|</span><a href="en/" lang="en" hreflang="en" aria-label="English">EN</a><span class="lang-switch__sep" aria-hidden="true">|</span><a href="ru/" lang="ru" hreflang="ru" aria-label="Русский">RU</a></div>
         <a class="icon-btn" href="tel:+493098312332" aria-label="Anrufen: 030 98312332">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </a>
@@ -118,6 +121,10 @@
               sachlich, verständlich und mit Blick auf das, was jetzt zählt: Ihre Kinder und Ihre finanzielle Zukunft.
             </p>
 
+            <p class="hero__place">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+              Berlin am Kurfürstendamm
+            </p>
             <ul class="checklist">
               <li>
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -295,28 +302,116 @@
           <p class="section-lead">Ich berate und vertrete Sie in allen zentralen Fragen des Familienrechts.</p>
         </header>
 
-        <ul class="services__grid">
-          <li class="service">
+        <!-- Sechs Leistungen: Klick auf ein Kästchen öffnet den ausführlichen Text in einem
+             breiten Feld unter der jeweiligen Reihe (script.js). Ohne JavaScript stehen alle
+             Texte offen unter ihrem Kästchen. -->
+        <div class="services__grid" data-services>
+          <article class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-            <h3 class="service__title">Scheidung</h3>
+            <h3 class="service__title" id="svc-scheidung-title">Scheidung</h3>
             <p class="service__text">Vom Trennungsjahr bis zum Scheidungsantrag: Ich kläre mit Ihnen, was zu regeln ist, und vertrete Ihre Interessen.</p>
-          </li>
-          <li class="service">
-            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
-            <h3 class="service__title">Unterhalt</h3>
-            <p class="service__text">Kindesunterhalt, Trennungsunterhalt oder Unterhalt nach der Scheidung: Ich prüfe, was Ihnen zusteht.</p>
-          </li>
-          <li class="service">
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-scheidung"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-scheidung" aria-labelledby="svc-scheidung-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Scheidung</p>
+              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Ich unterstütze Sie im gesamten Scheidungsprozess. Sie können sich bereits zum Zeitpunkt einer beabsichtigten Trennung über sämtliche rechtlichen Folgen einer Scheidung bei mir informieren.</p>
+              <p>Auch nach Erhalt eines Scheidungsantrags können Sie sich bei mir beraten lassen. Ich kommuniziere dabei immer offen, inwieweit eine rechtliche Vertretung für Sie notwendig ist – vor allem im Hinblick auf die zu erwartenden Kosten. Denn für das Scheidungsverfahren gilt zwar Anwaltszwang, d.&nbsp;h. der Scheidungsantrag muss über einen Rechtsanwalt gestellt werden. Für die Zustimmung zum Scheidungsantrag ist aber keine Vertretung durch einen Rechtsanwalt erforderlich. In diesem Fall sollten Sie sich aber mindestens zum Ablauf und vor allem zu den Folgen der fehlenden anwaltlichen Vertretung beraten lassen.</p>
+              <p>Im Rahmen des Beratungsgesprächs informiere ich Sie zum Versorgungsausgleich und zu allen anderen Möglichkeiten, Ihre wirtschaftlichen Ansprüche durchzusetzen oder unberechtigte Forderungen abzuwehren, etwa beim Trennungsunterhalt oder beim Zugewinnausgleich. Ich vertrete Sie auch bei internationalen Scheidungen mit besonderem Schwerpunkt auf Russland und den GUS-Staaten sowie dem islamischen Rechtskreis.</p>
+            </div>
+          </section>
+
+          <article class="service">
+            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+            <h3 class="service__title" id="svc-gewalt-title">Häusliche Gewalt</h3>
+            <p class="service__text">Schutz für Sie und Ihre Kinder: Ich vertrete Sie in Gewaltschutzverfahren und berate Sie auch schon vor einem Antrag bei Gericht.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-gewalt"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-gewalt" aria-labelledby="svc-gewalt-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Häusliche Gewalt</p>
+              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Ich vertrete Sie in Gewaltschutzsachen. Wenn Sie bereits einen Antrag bei der Rechtsantragsstelle des Gerichts gestellt haben, können Sie mich für eine Erstberatung kontaktieren. Ich bin auch im Rahmen der Verfahrenskostenhilfe tätig. Eine Anzeige bei der Polizei oder der Antrag auf Gewaltschutzmaßnahmen bedeutet meistens auch das Ende der persönlichen Beziehung zwischen den Partnern.</p>
+              <p>Sie können sich in Fällen häuslicher Gewalt auch vor einer Antragstellung bei Gericht anwaltlich beraten lassen. In der Regel sollten Gewaltschutzanträge direkt bei der Rechtsantragsstelle des Gerichts gestellt werden. Ich vertrete Sie auch in möglichen Strafverfahren im Zusammenhang mit häuslicher Gewalt.</p>
+              <p class="service__alert">Bei akuter Gefahr wählen Sie bitte sofort den Notruf <a href="tel:110">110</a>.</p>
+            </div>
+          </section>
+
+          <article class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
-            <h3 class="service__title">Sorge- und Umgangsrecht</h3>
+            <h3 class="service__title" id="svc-sorge-title">Sorge- und Umgangsrecht</h3>
             <p class="service__text">Wo die Kinder leben und wie der Kontakt zu beiden Eltern aussieht: Ich suche mit Ihnen Lösungen, die vor allem den Kindern gerecht werden.</p>
-          </li>
-          <li class="service">
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-sorge"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-sorge" aria-labelledby="svc-sorge-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Sorge- und Umgangsrecht</p>
+              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Verfahren im Sorge- und Umgangsrecht sind für Eltern eine besonders sensible Angelegenheit. Bei diesen Verfahren geht es vorrangig nicht um die Interessen der Eltern, sondern um die des Kindes, das meist am stärksten unter der Situation leidet. Ich begleite Sie während des gesamten Verfahrens und stehe Ihnen als verlässliche und fachkundige Stütze zur Seite.</p>
+              <p>In der emotional stark aufgeladenen Situation von Elternkonflikten um das gemeinsame Kind wirke ich in jedem Verfahren auf eine Lösung hin, etwa einen gerichtlichen Vergleich oder eine vertragliche Umgangsvereinbarung. Denn eine gemeinsame Lösung dient auch bei zerstrittenen Eltern im Regelfall dem Kindeswohl und Ihren Interessen mehr als eine einseitige Festlegung durch das Familiengericht. Wo Kooperation aber an ihre Grenzen stößt, nutze ich selbstverständlich alle prozessualen Möglichkeiten, um Ihre Interessen und das Kindeswohl zu schützen.</p>
+            </div>
+          </section>
+
+          <article class="service">
+            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+            <h3 class="service__title" id="svc-unterhalt-title">Unterhalt und Vermögen</h3>
+            <p class="service__text">Kindes-, Trennungs- oder Ehegattenunterhalt, Zugewinn und gemeinsames Vermögen: Ich prüfe, was Ihnen zusteht und welche Forderungen berechtigt sind.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-unterhalt"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-unterhalt" aria-labelledby="svc-unterhalt-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Unterhalt und Vermögen</p>
+              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Es gibt eine Reihe verschiedener Unterhaltsformen im Familienrecht – Kindesunterhalt, Verwandtenunterhalt, Ehegattenunterhalt usw. Ich prüfe für Sie, ob Sie einen Unterhaltsanspruch haben und wie Sie den Unterhalt rechtlich geltend machen können. Genauso vertrete ich Sie, wenn Sie sich unberechtigten Unterhaltsforderungen ausgesetzt sehen oder die Höhe von Unterhaltsforderungen überprüfen möchten.</p>
+              <p>Allen Unterhaltsformen ist gemeinsam, dass die Berechnung auf Grundlage des Einkommens erfolgt. Hierzu hat der potenziell Unterhaltsberechtigte einen Auskunftsanspruch gegen den Unterhaltspflichtigen. Ich unterstütze Sie bei der Erteilung oder Einholung von Auskünften. Das aufgrund der Auskunft zu ermittelnde Einkommen bestimmt die Unterhaltspflicht. Hierbei ist genau darauf zu achten, welche Posten vom Einkommen abzugsfähig sind. Viele Unterhaltsschuldner versuchen, ihre Unterhaltslast zu drücken, indem das Einkommen kleingerechnet wird. Welche Posten tatsächlich abzugsfähig sind, richtet sich nach den gesetzlichen Anforderungen und der Rechtsprechung der Gerichte. Hierüber informiere ich Sie in einem Beratungsgespräch.</p>
+              <p>Ich vertrete Sie auch im Bereich des Unterhaltsvorschusses. Unterhaltsvorschuss wird von den Unterhaltsvorschusskassen an Bedürftige gezahlt, wenn minderjährige Kinder bei einem der Elternteile leben. Häufig sieht sich der nicht betreuende Elternteil – oft nach Jahren – hohen Rückforderungen der Unterhaltsvorschusskasse ausgesetzt. In vielen Fällen kann diese Schuldenlast mit anwaltlicher Vertretung aber deutlich reduziert werden. Sie können einen Beratungstermin vereinbaren, um sich zu einer Unterhaltsvorschusssache zu informieren.</p>
+              <p>Auch beim Vermögen unterstütze ich Sie. Bei der Scheidung wird nicht das gesamte Eigentum geteilt, sondern nur der Zugewinn, also das, was ein Ehepartner während der Ehe hinzugewonnen hat. Ich ermittle, was tatsächlich ausgeglichen werden muss – etwa beim Haus, bei Ersparnissen oder der gemeinsamen Wohnung – und setze mich für eine faire Aufteilung ein.</p>
+            </div>
+          </section>
+
+          <article class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
-            <h3 class="service__title">Zugewinn und Vermögen</h3>
-            <p class="service__text">Haus, Ersparnisse, gemeinsame Wohnung: Ich ermittle, was tatsächlich ausgeglichen wird, und setze mich für eine faire Aufteilung ein.</p>
-          </li>
-        </ul>
+            <h3 class="service__title" id="svc-vkh-title">Verfahrenskostenhilfe</h3>
+            <p class="service__text">Wenig Einkommen? Ich beantrage für Sie Verfahrenskostenhilfe, damit die Kosten kein Hindernis sind.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-vkh"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-vkh" aria-labelledby="svc-vkh-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Verfahrenskostenhilfe</p>
+              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Wenn Sie nicht über genug Einkommen verfügen, beantrage ich für Sie Verfahrenskostenhilfe. Sie müssen dazu das Formular über die wirtschaftlichen Verhältnisse ausfüllen. Bei Fragen hierzu unterstütze ich Sie gerne. Eine Ausfüllhilfe für das Formular erhalten Sie auf <a href="https://www.pkh-formular.de" target="_blank" rel="noopener">www.pkh-formular.de</a>.</p>
+              <p>Mit der Verfahrenskostenhilfe übernimmt die Staatskasse die Gerichtskosten und meine Gebühren – je nach Einkommen ganz oder gegen Ratenzahlung. In der Regel haben Sie einen Anspruch auf Verfahrenskostenhilfe, wenn Sie Sozialleistungen erhalten (z.&nbsp;B. Bürgergeld oder Grundsicherung). Sie können auch Verfahrenskostenhilfe erhalten, wenn Sie über ein geringes Einkommen verfügen. In diesem Fall kann es sein, dass das Gericht eine Ratenzahlung festsetzt.</p>
+            </div>
+          </section>
+
+          <article class="service">
+            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            <h3 class="service__title" id="svc-international-title">Internationales Familienrecht</h3>
+            <p class="service__text">Als Rechtsanwalt im Familienrecht berate und vertrete ich Sie im Bereich des grenzüberschreitenden bzw. internationalen Familienrechts. Gerne findet die Beratung auf Englisch oder Russisch statt.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-international"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-international" aria-labelledby="svc-international-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Internationales Familienrecht</p>
+              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Auslandsbezüge können auf verschiedene Weise entstehen, z.&nbsp;B. durch eine Eheschließung im Ausland mit anschließender Einreise der Ehegatten, durch die ausländische Staatsangehörigkeit eines oder beider Ehepartner oder auch nur durch einen geplanten Wegzug ins Ausland. Die Folgen sind unterschiedlich und hängen von verschiedenen Faktoren ab. Besonders schwierig ist der Auslandsbezug bei Ländern außerhalb der Europäischen Union, z.&nbsp;B. Russland, Iran, Vietnam oder anderen Ländern.</p>
+              <p>Eine anwaltliche Beratung ist dabei meistens sinnvoll, weil die Wirkungen von Land zu Land sehr unterschiedlich sein können. Die möglichen Auswirkungen sind für die Ehegatten meistens nicht leicht erkennbar. Im Fall einer Trennung oder Scheidung kann das zu bösen Überraschungen führen. Die möglichen Folgen können vorab durch Vereinbarungen abgefedert werden, z.&nbsp;B. durch einen Ehevertrag mit deutscher Rechtswahlklausel. Hierbei unterstütze ich Sie.</p>
+            </div>
+          </section>
+        </div>
 
         <div class="services__more">
           <svg class="icon services__more-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
@@ -579,6 +674,28 @@
               <p>Das höre ich häufig. Droht der Partner damit, dass die Einschaltung eines Anwalts eine Eskalation bedeutet, ist das persönliche Verhältnis meist schon so zerrüttet, dass Sie professionelle Unterstützung benötigen.</p><p>Ich selbst versuche, den Streit zu deeskalieren – vor allem, indem ich außergerichtliche Einigungen bevorzuge. Manchmal rate ich auch, sich zunächst an eine Beratungsstelle zu wenden. Ein Beratungsgespräch ist in einer Trennungssituation in nahezu allen Fällen hilfreich.</p>
             </div>
           </details>
+          <details class="accordion__item">
+            <summary class="accordion__q">Was muss bei der Scheidung einer ausländischen Ehe immer beachtet werden?<span class="accordion__plus" aria-hidden="true"></span></summary>
+            <div class="accordion__a">
+              <p>Die Scheidung einer ausländischen Ehe in Deutschland verläuft in der Regel nach denselben Regeln wie eine inländische Ehescheidung. Das heißt, dass ein Trennungsjahr abzuwarten ist. Viel wichtiger ist der Versorgungsausgleich bei der Ehescheidung. Durch den Versorgungsausgleich werden die Rentenanwartschaften beider Ehegatten zwischen ihnen aufgeteilt. Häufig kommt es vor, dass die Ehepartner nach Deutschland gezogen sind, weil einer von ihnen hier Arbeit gefunden hat. In diesem Fall würde derjenige Ehepartner vom Versorgungsausgleich profitieren, der nicht oder nur wenig gearbeitet hat.</p>
+              <p>Aber Vorsicht: Der Versorgungsausgleich wird bei ausländischen Ehen häufig nur auf Antrag durchgeführt. Das bedeutet, dass das Gericht ihn dann nicht automatisch durchführt, sondern nur, wenn Sie dies gesondert beantragen. Wird der Antrag nicht gestellt, findet auch kein Versorgungsausgleich statt. Lassen Sie daher vorab prüfen, ob Sie einen Antrag stellen müssen.</p>
+            </div>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__q"><span><span class="accordion__kicker">Islamische Brautgaben (Mahr, Sadaq, Morgengabe)</span>Kann ich eine im Iran vereinbarte Mahr in Deutschland vor einem Gericht einklagen?</span><span class="accordion__plus" aria-hidden="true"></span></summary>
+            <div class="accordion__a">
+              <p>Die Vereinbarung von Brautgaben ist in vielen islamisch geprägten Ländern gelebte Praxis. In Deutschland sind Brautgaben nicht mehr üblich. Allerdings sind im Ausland vereinbarte Brautgaben in Deutschland grundsätzlich wirksam. Das bedeutet: Sie können eine Brautgabe vor einem deutschen Gericht einklagen oder auf die Zahlung einer Brautgabe in Deutschland verklagt werden – vorausgesetzt, die deutschen Gerichte sind auch international zuständig.</p>
+              <p>Ob deutsche Gerichte zuständig sind, muss im Einzelfall geklärt werden. Typischerweise besteht die Zuständigkeit aufgrund eines Wohnsitzes der Eheleute in Deutschland. Die deutschen Gerichte haben bereits eine Vielzahl von Entscheidungen zu Brautgaben getroffen, etwa zu iranischen, tunesischen oder türkischen Brautgaben.</p>
+            </div>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__q"><span><span class="accordion__kicker">Islamische Brautgaben (Mahr, Sadaq, Morgengabe)</span>Aus welchen Gründen kann die Zahlung abgelehnt werden?</span><span class="accordion__plus" aria-hidden="true"></span></summary>
+            <div class="accordion__a">
+              <p>Ein Brautgabeversprechen kann im Einzelfall gegen die guten Sitten (§&nbsp;138&nbsp;BGB) oder die deutsche öffentliche Ordnung (ordre public) verstoßen. Konkret wird der Ehemann einwenden, dass er durch das Brautgabeversprechen wirtschaftlich derart überlastet ist, dass ihm eine Zahlung nicht zumutbar erscheint. Regelmäßig wird dieser Versuch aber nicht funktionieren.</p>
+              <p>Auch wenn die ausländische Brautgabe vor einem deutschen Gericht eingeklagt werden kann, wird meistens das ausländische Sachrecht angewendet. Das bedeutet, dass das deutsche Recht für die Einzelfragen der Brautgabe selbst gar nicht zur Anwendung kommt. In vielen ausländischen Rechtsordnungen sind Ausschlüsse bei Brautgaben wegen Überschuldung gar nicht vorgesehen. Deshalb kann im Einzelfall auch das Versprechen einer hohen Brautgabe wirksam sein.</p>
+              <p>In der iranischen Rechtsordnung sind Brautgaben, die höchstens 110 volle Bahar-Azadi-Goldmünzen vorsehen, grundsätzlich immer wirksam (Art.&nbsp;22 Satz&nbsp;1 iranFSch). Auch darüber hinausgehende Versprechen sind wirksam, allerdings kann der Ehemann bei der Vollstreckung für darüber hinausgehende Beträge seine fehlende wirtschaftliche Leistungsfähigkeit einwenden.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -612,8 +729,8 @@
 
           <figure class="contact__media" aria-hidden="true">
             <picture>
-              <source type="image/webp" srcset="assets/img/monument-800.webp 800w, assets/img/monument-1400.webp 1400w" sizes="(min-width: 1100px) 40vw, 100vw">
-              <img src="assets/img/monument-800.jpg" srcset="assets/img/monument-800.jpg 800w, assets/img/monument-1400.jpg 1400w" sizes="(min-width: 1100px) 40vw, 100vw"
+              <source type="image/webp" srcset="assets/img/kurfuerstendamm-800.webp 800w, assets/img/kurfuerstendamm-1400.webp 1400w" sizes="(min-width: 1100px) 40vw, 100vw">
+              <img src="assets/img/kurfuerstendamm-800.jpg" srcset="assets/img/kurfuerstendamm-800.jpg 800w, assets/img/kurfuerstendamm-1400.jpg 1400w" sizes="(min-width: 1100px) 40vw, 100vw"
                    alt="" width="1400" height="1050" loading="lazy" decoding="async">
             </picture>
           </figure>
@@ -719,6 +836,6 @@
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="vendor/lenis.min.js" defer></script>
-  <script src="script.js?v=17" defer></script>
+  <script src="script.js?v=19" defer></script>
 </body>
 </html>

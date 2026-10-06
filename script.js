@@ -11,7 +11,7 @@
   const hasGsap = typeof window.gsap !== 'undefined';
 
   /* ---------- Texte je Sprache (Sprache aus <html lang>) ---------- */
-  const LANG = document.documentElement.lang === 'en' ? 'en' : 'de';
+  const LANG = ['en', 'ru'].includes(document.documentElement.lang) ? document.documentElement.lang : 'de';
   const T = {
     de: {
       more: 'Weiterlesen',
@@ -40,6 +40,20 @@
       fileType: (n) => `“${n}” is not an accepted format. Accepted formats are PDF, JPG, PNG and Word.`,
       fileSize: (n) => `“${n}” is larger than 10 MB.`,
       fileTotal: 'The files are larger than 15 MB in total.',
+    },
+    ru: {
+      more: 'Читать далее',
+      less: 'Свернуть',
+      dot: (i, n) => `Отзыв ${i} из ${n}`,
+      valueMissing: 'Пожалуйста, заполните это поле.',
+      typeMismatch: 'Пожалуйста, введите корректный адрес электронной почты.',
+      sending: 'Ваш запрос отправляется …',
+      success: 'Спасибо. Ваш запрос получен. Обычно я отвечаю в течение 24 часов.',
+      error: 'К сожалению, отправить запрос не удалось. Пожалуйста, попробуйте ещё раз или позвоните мне: +49 30 98312332.',
+      fileCount: 'Пожалуйста, выберите не более 5 файлов.',
+      fileType: (n) => `Файл «${n}» имеет недопустимый формат. Допускаются PDF, JPG, PNG и Word.`,
+      fileSize: (n) => `Файл «${n}» больше 10 МБ.`,
+      fileTotal: 'Общий размер файлов превышает 15 МБ.',
     },
   }[LANG];
 
@@ -127,6 +141,81 @@
     };
     track.addEventListener('scroll', markDot, { passive: true });
     markDot();
+  }
+
+  /* ---------- Leistungen: Kästchen öffnen den ausführlichen Text unter ihrer Reihe ---------- */
+  const servicesGrid = document.querySelector('[data-services]');
+  if (servicesGrid) {
+    const cards = [...servicesGrid.querySelectorAll('.service')];
+    const panelOf = (card) => document.getElementById(card.querySelector('.service__toggle').getAttribute('aria-controls'));
+    let active = null;
+
+    // Kästchen bekommen die Reihenfolge 0, 2, 4 …; das offene Feld steht direkt hinter
+    // dem letzten Kästchen seiner Reihe und nimmt die volle Breite ein.
+    const place = () => {
+      const cols = getComputedStyle(servicesGrid).gridTemplateColumns.split(' ').length;
+      cards.forEach((card, i) => { card.style.order = String(i * 2); });
+      if (!active) return;
+      const i = cards.indexOf(active);
+      const last = Math.min(Math.ceil((i + 1) / cols) * cols, cards.length) - 1;
+      const panel = panelOf(active);
+      panel.style.order = String(last * 2 + 1);
+      const grid = servicesGrid.getBoundingClientRect();
+      const card = active.getBoundingClientRect();
+      panel.style.setProperty('--notch-x', `${Math.round(card.left + card.width / 2 - grid.left)}px`);
+    };
+
+    const setOpen = (card, open) => {
+      const toggle = card.querySelector('.service__toggle');
+      card.classList.toggle('is-active', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.service__toggle-label').textContent = open ? T.less : T.more;
+      panelOf(card).classList.toggle('is-open', open);
+    };
+
+    const scrollByPx = (dy, immediate) => {
+      if (lenis) lenis.scrollTo(window.scrollY + dy, { immediate });
+      else window.scrollBy({ top: dy, behavior: immediate || reducedMotion ? 'auto' : 'smooth' });
+    };
+
+    const select = (card) => {
+      const before = card.getBoundingClientRect().top;
+      const opening = active !== card;
+      if (active) setOpen(active, false);
+      active = opening ? card : null;
+      if (active) setOpen(active, true);
+      place();
+      if (lenis) lenis.resize();
+      if (hasGsap && window.ScrollTrigger) ScrollTrigger.refresh();
+
+      // Ruhe bewahren: Das angeklickte Kästchen bleibt an seiner Stelle auf dem Bildschirm,
+      // auch wenn sich darüber ein anderes Feld schließt.
+      const shift = card.getBoundingClientRect().top - before;
+      if (Math.abs(shift) > 1) scrollByPx(shift, true);
+
+      // Liegt das geöffnete Feld unterhalb des Bildschirms, wird es sanft ins Bild geholt –
+      // aber nie so weit, dass das Kästchen oben verschwindet.
+      if (active) {
+        const panel = panelOf(active).getBoundingClientRect();
+        const top = card.getBoundingClientRect().top - (nav ? nav.offsetHeight : 0) - 16;
+        const needed = Math.min(panel.bottom - window.innerHeight + 24, top);
+        if (needed > 0) scrollByPx(needed, false);
+      }
+    };
+
+    cards.forEach((card) => {
+      card.querySelector('.service__toggle').addEventListener('click', () => select(card));
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !active) return;
+      const toggle = active.querySelector('.service__toggle');
+      select(active);
+      toggle.focus();
+    });
+
+    servicesGrid.classList.add('is-enhanced');
+    place();
+    window.addEventListener('resize', place);
   }
 
   /* ---------- Kontaktformular (kontakt.php auf dem eigenen Webspace) ---------- */
@@ -257,16 +346,25 @@
       range.selectNodeContents(h);
       const natural = range.getBoundingClientRect().width;
       if (natural <= available) return;                 // passt bereits
-      const size = Math.floor(max * (available / natural) * 0.98 * 10) / 10;
-      if (size >= minSize) {
+      // Die variable Serifenschrift wird bei kleineren Größen etwas breiter (optische
+      // Größen) – daher nach dem Verkleinern nachmessen und ggf. weiter anpassen.
+      let size = Math.floor(max * (available / natural) * 0.98 * 10) / 10;
+      for (let step = 0; step < 4 && size >= minSize; step += 1) {
         h.style.fontSize = `${size}px`;
-      } else {
-        h.style.whiteSpace = '';                        // zu lang: lesbar umbrechen
+        const width = range.getBoundingClientRect().width;
+        if (width <= available) return;
+        size = Math.floor(size * (available / width) * 0.99 * 10) / 10;
       }
+      h.style.fontSize = '';                            // zu lang: lesbar umbrechen
+      h.style.whiteSpace = '';
     });
   };
   fitHeadings();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeadings);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitHeadings);
+    // nachgeladene Schriften (z. B. Kyrillisch) verändern die Textbreite: neu messen
+    document.fonts.addEventListener('loadingdone', fitHeadings);
+  }
   let fitTimer;
   window.addEventListener('resize', () => {
     clearTimeout(fitTimer);

@@ -867,6 +867,7 @@ button.text-link {
   gap: 16px;
 }
 .service {
+  scroll-margin-top: calc(var(--nav-h) + 20px); /* Sprungmarken (Sitelinks) landen knapp unter der Navigation */
   position: relative;
   display: flex;
   flex-direction: column;

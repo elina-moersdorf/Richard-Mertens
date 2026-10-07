@@ -184,7 +184,8 @@
       else window.scrollBy({ top: dy, behavior: immediate || reducedMotion ? 'auto' : 'smooth' });
     };
 
-    const select = (card) => {
+    // quiet = beim Öffnen über eine Sprungmarke: nicht selbst scrollen (das übernimmt die Sprungmarke)
+    const select = (card, quiet = false) => {
       const before = card.getBoundingClientRect().top;
       const opening = active !== card;
       if (active) setOpen(active, false);
@@ -193,6 +194,7 @@
       place();
       if (lenis) lenis.resize();
       if (hasGsap && window.ScrollTrigger) ScrollTrigger.refresh();
+      if (quiet) return;
 
       // Ruhe bewahren: Das angeklickte Kästchen bleibt an seiner Stelle auf dem Bildschirm,
       // auch wenn sich darüber ein anderes Feld schließt.
@@ -221,6 +223,15 @@
 
     place();
     window.addEventListener('resize', place);
+
+    // Sprungmarke auf ein Kästchen (z. B. Google-Ads-Sitelink …/#scheidung): Text gleich geöffnet zeigen
+    const openFromHash = () => {
+      let card = null;
+      try { card = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (e) { /* ungültige Marke */ }
+      if (card && cards.includes(card) && active !== card) select(card, true);
+    };
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
   }
 
   /* ---------- Aufruf mit Sprungmarke (z. B. von Impressum aus auf #anfrage) ----------

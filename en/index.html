@@ -28,7 +28,7 @@
 
   <link rel="preload" href="../fonts/SourceSerif4-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/SourceSans3-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../style.css?v=25">
+  <link rel="stylesheet" href="../style.css?v=26">
 
   <script type="application/ld+json">
   {
@@ -321,7 +321,7 @@
         <!-- Six services: Richard's three focus areas on top (large), three more below (compact). Clicking a box opens the detailed text in a wide panel below its row
              (script.js). Without JavaScript, all texts are shown open below their box. -->
         <div class="services__grid services__grid--focus" data-services>
-          <article class="service">
+          <article id="divorce" class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
             <h3 class="service__title" id="svc-divorce-title">Divorce</h3>
             <p class="service__text">From the one-year separation period to filing for divorce: I work out with you what needs to be settled and represent your interests.</p>
@@ -339,7 +339,7 @@
             </div>
           </section>
 
-          <article class="service">
+          <article id="maintenance-assets" class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
             <h3 class="service__title" id="svc-maintenance-title">Maintenance and assets</h3>
             <p class="service__text">Child, separation or spousal maintenance, accrued gains and shared assets: I check what you are entitled to and which claims are justified.</p>
@@ -358,7 +358,7 @@
             </div>
           </section>
 
-          <article class="service">
+          <article id="international-family-law" class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
             <h3 class="service__title" id="svc-international-title">International family law</h3>
             <p class="service__text">As a lawyer working in family law, I advise and represent you on cross-border and international family law matters. Consultations can also be held in German or Russian.</p>
@@ -378,7 +378,7 @@
 
         <!-- weitere Leistungen: kompaktere, zurückhaltendere Kästchen -->
         <div class="services__grid services__grid--minor" data-services>
-          <article class="service service--minor">
+          <article id="custody" class="service service--minor">
             <div class="service__head">
               <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
               <h3 class="service__title" id="svc-custody-title">Custody and contact</h3>
@@ -397,7 +397,7 @@
             </div>
           </section>
 
-          <article class="service service--minor">
+          <article id="domestic-violence" class="service service--minor">
             <div class="service__head">
               <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
               <h3 class="service__title" id="svc-violence-title">Domestic violence</h3>
@@ -417,7 +417,7 @@
             </div>
           </section>
 
-          <article class="service service--minor">
+          <article id="legal-aid" class="service service--minor">
             <div class="service__head">
               <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
               <h3 class="service__title" id="svc-legal-aid-title">Legal aid</h3>
@@ -545,7 +545,7 @@
     </section>
 
     <!-- ===================== FURTHER REVIEWS ===================== -->
-    <section class="section section--alt reviews" aria-labelledby="reviews-title">
+    <section class="section section--alt reviews" id="reviews" aria-labelledby="reviews-title">
       <div class="container">
         <header class="section-head">
           <h2 class="section-title" data-fit id="reviews-title">What clients say about working with me</h2>
@@ -866,6 +866,6 @@
   <script src="../vendor/gsap.min.js" defer></script>
   <script src="../vendor/ScrollTrigger.min.js" defer></script>
   <script src="../vendor/lenis.min.js" defer></script>
-  <script src="../script.js?v=21" defer></script>
+  <script src="../script.js?v=22" defer></script>
 </body>
 </html>

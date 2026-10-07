@@ -2102,9 +2102,21 @@ button.text-link {
   .cc__details dl { grid-template-columns: 1fr; }
   .cc__details dd { margin-bottom: 6px; }
 }
+/* Handy und Tablet: Die Entscheidungs-Buttons bleiben immer sichtbar am unteren Rand des
+   Banners stehen, der Text scrollt darüber (Ablehnen so leicht erreichbar wie Zustimmen). */
+@media (max-width: 999px) {
+  .cc__view > .cc__actions {
+    position: sticky;
+    bottom: calc(-1 * var(--cc-pad, 24px));
+    margin: 4px 0 calc(-1 * var(--cc-pad, 24px));
+    padding: 12px 0 var(--cc-pad, 24px);
+    background: var(--rm-white);
+    border-top: 1px solid var(--rm-stone-line);
+  }
+}
 @media (min-width: 640px) {
   .cc { padding: 0 24px 24px; }
-  .cc__inner { padding: 28px 32px; }
+  .cc__inner { --cc-pad: 28px; padding: 28px 32px; }
   .cc__actions { grid-template-columns: 1fr 1fr; align-items: center; }
   .cc__view[data-cc-view="main"] .cc__link { grid-column: 1 / -1; justify-self: center; }
   .cc__view[data-cc-view="settings"] .cc__actions { grid-template-columns: repeat(3, 1fr); }

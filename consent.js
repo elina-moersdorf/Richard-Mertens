@@ -12,14 +12,20 @@
       lokalen Speicher abgelegt (technisch notwendig, § 25 Abs. 2 TDDDG)
       und nach 12 Monaten oder bei neuer Version erneut abgefragt.
    4. Widerruf jederzeit über jedes Element mit [data-cc-open].
+   5. window.rmConsent.has('marketing' | 'statistics') liefert anderen
+      Skripten den aktuellen Stand (z. B. für erweiterte Conversions).
 
-   Vor dem Livegang: GTM_ID unten eintragen.
+   Das offizielle GTM-Snippet steht bewusst NICHT ungefiltert im <head>:
+   Es würde Google vor der Einwilligung laden. Es wird in loadGTM()
+   ausgeführt, sobald eine Einwilligung vorliegt. Das <noscript>-iframe
+   entfällt aus demselben Grund (ohne JavaScript ist keine Einwilligung möglich).
    ========================================================= */
 (() => {
   'use strict';
 
-  const GTM_ID = 'GTM-XXXXXXX';          // eigene Container-ID eintragen
-  const CONSENT_VERSION = '1.0';         // erhöhen, wenn sich Dienste/Zwecke ändern → erneute Abfrage
+  const GTM_ID = 'GTM-P35MM9F5';         // Container-ID von Google Tag Manager
+  const CONSENT_VERSION = '1.1';         // erhöhen, wenn sich Dienste/Zwecke ändern → erneute Abfrage
+                                         // 1.1: erweiterte Conversions (gehashte E-Mail-Adresse) ergänzt
   const STORAGE_KEY = 'rm_consent';
   const MAX_AGE_DAYS = 365;
 
@@ -68,17 +74,28 @@
     return record;
   }
 
+  // Lesezugriff für andere Skripte, z. B. ob die E-Mail-Adresse für erweiterte Conversions
+  // in den dataLayer darf (nur mit Einwilligung in „Marketing“)
+  window.rmConsent = Object.freeze({
+    has: (category) => {
+      const current = readConsent();
+      return Boolean(current && current[category]);
+    },
+  });
+
   /* ---------- 2. Einwilligung anwenden ---------- */
   let gtmLoaded = false;
 
+  // entspricht dem offiziellen GTM-Snippet, wird aber erst nach Einwilligung ausgeführt
   function loadGTM() {
-    if (gtmLoaded || !/^GTM-[A-Z0-9]+$/.test(GTM_ID) || GTM_ID === 'GTM-XXXXXXX') return;
+    if (gtmLoaded || !/^GTM-[A-Z0-9]+$/.test(GTM_ID)) return;
     gtmLoaded = true;
-    window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
-    const s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM_ID);
-    document.head.appendChild(s);
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    const f = document.getElementsByTagName('script')[0];
+    const j = document.createElement('script');
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM_ID);
+    f.parentNode.insertBefore(j, f);
   }
 
   function applyConsent(record) {
@@ -138,7 +155,7 @@
   const L = {
     de: {
       title: 'Datenschutz-Einstellungen',
-      intro: 'Ich setze auf dieser Website Dienste von Google ein (Google Tag Manager, Google Analytics, Google Ads), um die Nutzung statistisch auszuwerten und den Erfolg meiner Anzeigen zu messen. Diese Dienste nutze ich nur mit Ihrer Einwilligung. Dabei können Daten an Google in die USA übermittelt werden. Ihre Einwilligung ist freiwillig und kann jederzeit über „Cookie-Einstellungen“ am Seitenende geändert oder widerrufen werden. Technisch notwendige Funktionen sind immer aktiv.',
+      intro: 'Ich setze auf dieser Website Dienste von Google ein (Google Tag Manager, Google Analytics, Google Ads), um die Nutzung statistisch auszuwerten und den Erfolg meiner Anzeigen zu messen. Diese Dienste nutze ich nur mit Ihrer Einwilligung. Mit Ihrer Einwilligung in „Marketing“ wird beim Absenden des Kontaktformulars außerdem Ihre E-Mail-Adresse in gehashter (pseudonymisierter) Form an Google übermittelt, damit ich Anfragen meinen Anzeigen zuordnen kann. Dabei können Daten an Google in die USA übermittelt werden. Ihre Einwilligung ist freiwillig und kann jederzeit über „Cookie-Einstellungen“ am Seitenende geändert oder widerrufen werden. Technisch notwendige Funktionen sind immer aktiv.',
       privacy: 'Datenschutzerklärung', privacyHref: 'datenschutz.html',
       imprint: 'Impressum', imprintHref: 'impressum.html',
       reject: 'Alle ablehnen', accept: 'Alle akzeptieren', settings: 'Einstellungen', save: 'Auswahl speichern',
@@ -157,9 +174,9 @@
       statisticsPurpose: 'Statistische Auswertung der Website-Nutzung (z.&nbsp;B. aufgerufene Seiten, Verweildauer, Gerät, ungefähre Region)',
       statisticsCookies: '_ga, _ga_* – bis zu 2 Jahre',
       marketing: 'Marketing',
-      marketingInfo: 'Misst, ob meine Google-Anzeigen zu Anfragen führen, und ermöglicht passende Anzeigen auf anderen Websites.',
-      marketingServices: 'Google Tag Manager, Google Ads (Conversion-Tracking, Remarketing)',
-      marketingPurpose: 'Erfolgsmessung von Anzeigen, Wiedererkennung für Werbung auf anderen Websites',
+      marketingInfo: 'Misst, ob meine Google-Anzeigen zu Anfragen führen (auch mithilfe Ihrer gehashten E-Mail-Adresse beim Absenden des Formulars), und ermöglicht passende Anzeigen auf anderen Websites.',
+      marketingServices: 'Google Tag Manager, Google Ads (Conversion-Tracking inkl. erweiterter Conversions, Remarketing)',
+      marketingPurpose: 'Erfolgsmessung von Anzeigen; beim Absenden des Kontaktformulars Abgleich Ihrer gehashten E-Mail-Adresse (SHA-256) mit Google-Konten (erweiterte Conversions); Wiedererkennung für Werbung auf anderen Websites',
       marketingCookies: '_gcl_au – 90 Tage; Cookies auf doubleclick.net/google.com (z.&nbsp;B. IDE) – bis zu 13 Monate',
       google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland',
       usa: 'Übermittlung in die USA möglich (EU-US Data Privacy Framework)',
@@ -167,7 +184,7 @@
     },
     en: {
       title: 'Privacy settings',
-      intro: 'This website uses Google services (Google Tag Manager, Google Analytics, Google Ads) to analyse how the site is used and to measure the success of my advertising. I only use these services with your consent. In the process, data may be transferred to Google in the USA. Your consent is voluntary and can be changed or withdrawn at any time via “Cookie settings” at the bottom of the page. Strictly necessary functions are always active.',
+      intro: 'This website uses Google services (Google Tag Manager, Google Analytics, Google Ads) to analyse how the site is used and to measure the success of my advertising. I only use these services with your consent. If you consent to “Marketing”, your email address is also sent to Google in hashed (pseudonymised) form when you submit the contact form, so that I can attribute enquiries to my ads. In the process, data may be transferred to Google in the USA. Your consent is voluntary and can be changed or withdrawn at any time via “Cookie settings” at the bottom of the page. Strictly necessary functions are always active.',
       privacy: 'Privacy policy', privacyHref: 'privacy.html',
       imprint: 'Legal notice', imprintHref: 'legal-notice.html',
       reject: 'Reject all', accept: 'Accept all', settings: 'Settings', save: 'Save selection',
@@ -186,9 +203,9 @@
       statisticsPurpose: 'Statistical analysis of website usage (e.g. pages viewed, time spent, device, approximate region)',
       statisticsCookies: '_ga, _ga_* – up to 2 years',
       marketing: 'Marketing',
-      marketingInfo: 'Measures whether my Google ads lead to enquiries and enables relevant ads on other websites.',
-      marketingServices: 'Google Tag Manager, Google Ads (conversion tracking, remarketing)',
-      marketingPurpose: 'Measuring the success of ads, recognising visitors for advertising on other websites',
+      marketingInfo: 'Measures whether my Google ads lead to enquiries (also using your hashed email address when you submit the form) and enables relevant ads on other websites.',
+      marketingServices: 'Google Tag Manager, Google Ads (conversion tracking incl. enhanced conversions, remarketing)',
+      marketingPurpose: 'Measuring the success of ads; when you submit the contact form, matching your hashed email address (SHA-256) with Google accounts (enhanced conversions); recognising visitors for advertising on other websites',
       marketingCookies: '_gcl_au – 90 days; cookies on doubleclick.net/google.com (e.g. IDE) – up to 13 months',
       google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland',
       usa: 'Transfer to the USA possible (EU-US Data Privacy Framework)',
@@ -196,7 +213,7 @@
     },
     ru: {
       title: 'Настройки конфиденциальности',
-      intro: 'На этом сайте я использую сервисы Google (Google Tag Manager, Google Analytics, Google Ads), чтобы статистически анализировать использование сайта и оценивать эффективность своей рекламы. Эти сервисы я использую только с Вашего согласия. При этом данные могут передаваться Google в США. Ваше согласие добровольно, его можно в любой момент изменить или отозвать через «Настройки cookie» внизу страницы. Технически необходимые функции активны всегда.',
+      intro: 'На этом сайте я использую сервисы Google (Google Tag Manager, Google Analytics, Google Ads), чтобы статистически анализировать использование сайта и оценивать эффективность своей рекламы. Эти сервисы я использую только с Вашего согласия. Если Вы согласились на «Маркетинг», при отправке контактной формы Ваш адрес электронной почты также передаётся Google в хешированном (псевдонимизированном) виде, чтобы я мог соотнести запросы со своей рекламой. При этом данные могут передаваться Google в США. Ваше согласие добровольно, его можно в любой момент изменить или отозвать через «Настройки cookie» внизу страницы. Технически необходимые функции активны всегда.',
       privacy: 'Политика конфиденциальности', privacyHref: 'privacy.html',
       imprint: 'Выходные данные', imprintHref: 'legal-notice.html',
       reject: 'Отклонить все', accept: 'Принять все', settings: 'Настройки', save: 'Сохранить выбор',
@@ -215,9 +232,9 @@
       statisticsPurpose: 'Статистический анализ использования сайта (например, просмотренные страницы, время на сайте, устройство, приблизительный регион)',
       statisticsCookies: '_ga, _ga_* – до 2 лет',
       marketing: 'Маркетинг',
-      marketingInfo: 'Показывает, приводят ли мои объявления в Google к запросам, и позволяет показывать подходящую рекламу на других сайтах.',
-      marketingServices: 'Google Tag Manager, Google Ads (отслеживание конверсий, ремаркетинг)',
-      marketingPurpose: 'Оценка эффективности рекламы, повторное распознавание посетителей для рекламы на других сайтах',
+      marketingInfo: 'Показывает, приводят ли мои объявления в Google к запросам (в том числе с помощью Вашего хешированного адреса эл. почты при отправке формы), и позволяет показывать подходящую рекламу на других сайтах.',
+      marketingServices: 'Google Tag Manager, Google Ads (отслеживание конверсий, включая расширенные конверсии, ремаркетинг)',
+      marketingPurpose: 'Оценка эффективности рекламы; при отправке контактной формы – сопоставление Вашего хешированного адреса эл. почты (SHA-256) с аккаунтами Google (расширенные конверсии); повторное распознавание посетителей для рекламы на других сайтах',
       marketingCookies: '_gcl_au – 90 дней; cookie на doubleclick.net/google.com (например, IDE) – до 13 месяцев',
       google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ирландия',
       usa: 'Возможна передача в США (EU-US Data Privacy Framework)',

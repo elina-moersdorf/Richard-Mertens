@@ -39,18 +39,20 @@ $lang = in_array($lang, ['en', 'ru'], true) ? $lang : 'de';
 
 const LANG_NAMES = ['de' => 'Deutsch', 'en' => 'Englisch', 'ru' => 'Russisch'];
 const TARGETS    = [   // ohne JavaScript: Bestätigungsseite bzw. zurück zum Formular
-    'de' => ['danke.html', 'index.html#anfrage'],
+    'de' => ['danke.html', './#anfrage'],
     'en' => ['en/thank-you.html', 'en/#enquiry'],
     'ru' => ['ru/thank-you.html', 'ru/#enquiry'],
 ];
 
-function respond(bool $ok, string $message, bool $json): never
+// $sent = true nur, wenn die E-Mail wirklich verschickt wurde (nicht bei der Schein-Erfolgsmeldung
+// für Spam-Bots) – script.js löst nur dann das Conversion-Ereignis aus.
+function respond(bool $ok, string $message, bool $json, bool $sent = false): never
 {
     global $lang;
     if ($json) {
         header('Content-Type: application/json; charset=utf-8');
         http_response_code($ok ? 200 : 400);
-        echo json_encode(['success' => $ok, 'message' => $message], JSON_UNESCAPED_UNICODE);
+        echo json_encode(['success' => $ok, 'sent' => $sent, 'message' => $message], JSON_UNESCAPED_UNICODE);
     } else {
         header('Location: ' . TARGETS[$lang][$ok ? 0 : 1], true, 303);
     }
@@ -203,4 +205,4 @@ $sent = mail(MAIL_TO, $subject, $mailBody, $headers, '-f' . MAIL_FROM);
 if (!$sent) {
     respond(false, 'Die Anfrage konnte nicht gesendet werden.', $wantsJson);
 }
-respond(true, 'Vielen Dank. Ihre Anfrage ist angekommen.', $wantsJson);
+respond(true, 'Vielen Dank. Ihre Anfrage ist angekommen.', $wantsJson, true);

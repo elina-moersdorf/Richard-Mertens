@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /kontakt.php
+
+Sitemap: https://mertens-rechtsanwalt.de/sitemap.xml

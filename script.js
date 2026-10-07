@@ -309,22 +309,44 @@
       field.addEventListener(field.type === 'file' ? 'change' : 'blur', () => validate(field));
     });
 
+    /* Conversion-Ereignis für Google Tag Manager (Trigger „generate_lead“).
+       Nur nach bestätigtem Versand. Die E-Mail-Adresse (für erweiterte Conversions)
+       kommt nur mit Einwilligung in „Marketing“ in den dataLayer – Name, Telefon,
+       Anliegen, Nachricht und Anhänge nie. Ohne Einwilligung ist GTM gar nicht geladen;
+       der Eintrag bleibt dann ungenutzt im Browser. */
+    const trackLead = (email) => {
+      const data = { event: 'generate_lead', form_id: 'contact_form', form_language: LANG };
+      const consent = window.rmConsent;
+      if (email && consent && consent.has('marketing')) {
+        data.user_data = { email: String(email).trim().toLowerCase() };
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(data);
+    };
+
+    let sending = false;   // schützt vor doppeltem Absenden (Doppelklick, Enter-Taste)
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      if (sending) return;
       const invalid = fields.filter((f) => !validate(f));
       if (invalid.length) {
         invalid[0].focus();
         return;
       }
 
+      sending = true;
       submit.disabled = true;
       status.classList.remove('is-error');
       status.textContent = T.sending;
 
+      const formData = new FormData(form);
+      const email = formData.get('email');
+
       try {
         const response = await fetch(form.action, {
           method: 'POST',
-          body: new FormData(form),
+          body: formData,
           headers: { Accept: 'application/json' },
         });
         const result = await response.json();
@@ -334,12 +356,14 @@
           err.serverMessage = response.status === 400 ? result.message : '';
           throw err;
         }
+        if (result.sent) trackLead(email);              // nicht bei Schein-Erfolg für Spam-Bots
         form.reset();
         status.textContent = T.success;
       } catch (error) {
         status.classList.add('is-error');
         status.textContent = error.serverMessage || T.error;
       } finally {
+        sending = false;
         submit.disabled = false;
       }
     });

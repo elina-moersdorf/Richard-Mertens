@@ -39,9 +39,9 @@ $lang = in_array($lang, ['en', 'ru'], true) ? $lang : 'de';
 
 const LANG_NAMES = ['de' => 'Deutsch', 'en' => 'Englisch', 'ru' => 'Russisch'];
 const TARGETS    = [   // ohne JavaScript: Bestätigungsseite bzw. zurück zum Formular
-    'de' => ['danke.html', 'index.html#kontakt'],
-    'en' => ['en/thank-you.html', 'en/#contact'],
-    'ru' => ['ru/thank-you.html', 'ru/#contact'],
+    'de' => ['danke.html', 'index.html#anfrage'],
+    'en' => ['en/thank-you.html', 'en/#enquiry'],
+    'ru' => ['ru/thank-you.html', 'ru/#enquiry'],
 ];
 
 function respond(bool $ok, string $message, bool $json): never

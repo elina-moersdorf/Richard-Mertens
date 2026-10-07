@@ -15,7 +15,7 @@
 
   <link rel="preload" href="fonts/SourceSerif4-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/SourceSans3-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=21">
+  <link rel="stylesheet" href="style.css?v=22">
   <!-- Consent Mode v2 + Banner: muss vor allen Google-Diensten laden -->
   <script src="consent.js?v=3"></script>
 
@@ -93,7 +93,7 @@
         <a class="icon-btn" href="tel:+493098312332" aria-label="Anrufen: 030 98312332">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </a>
-        <a class="btn btn--primary btn--sm" href="#kontakt"><span>Anfrage<span class="hide-xs"> senden</span></span></a>
+        <a class="btn btn--primary btn--sm" href="#anfrage"><span>Anfrage<span class="hide-xs"> senden</span></span></a>
       </div>
     </nav>
   </header>
@@ -137,7 +137,7 @@
             </ul>
 
             <div class="hero__ctas">
-              <a class="btn btn--primary btn--lg" href="#kontakt">
+              <a class="btn btn--primary btn--lg" href="#anfrage">
                 Unverbindlich anfragen
                 <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
@@ -249,8 +249,8 @@
               <svg class="icon problem__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
               <span class="problem__index" aria-hidden="true">04</span>
             </div>
-            <h3 class="problem__title">Verliere ich die Hälfte von allem?</h3>
-            <p class="problem__text">Viele fürchten, bei der Scheidung ihr halbes Vermögen abgeben zu müssen. Das stimmt so nicht&nbsp;– die Sorge ist trotzdem verständlich.</p>
+            <h3 class="problem__title">Was passiert mit unserem gemeinsamen Vermögen?</h3>
+            <p class="problem__text">Viele denken, dass man die Hälfte seines Vermögens verliert. Das stimmt so nicht&nbsp;– die Sorge ist trotzdem verständlich.</p>
           </li>
         </ul>
 
@@ -275,7 +275,7 @@
           Ich melde mich in der Regel innerhalb von 24&nbsp;Stunden bei Ihnen.
         </p>
         <div class="bridge__ctas">
-          <a class="btn btn--primary btn--lg" href="#kontakt">
+          <a class="btn btn--primary btn--lg" href="#anfrage">
             Unverbindlich anfragen
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -298,10 +298,10 @@
           <p class="section-lead">Ich berate und vertrete Sie in allen zentralen Fragen des Familienrechts.</p>
         </header>
 
-        <!-- Sechs Leistungen: Klick auf ein Kästchen öffnet den ausführlichen Text in einem
-             breiten Feld unter der jeweiligen Reihe (script.js). Ohne JavaScript stehen alle
-             Texte offen unter ihrem Kästchen. -->
-        <div class="services__grid" data-services>
+        <!-- Sechs Leistungen: oben Richards drei Schwerpunkte (groß), darunter drei weitere (kompakt).
+             Klick auf ein Kästchen öffnet den ausführlichen Text in einem breiten Feld unter der
+             jeweiligen Reihe (script.js). Ohne JavaScript stehen alle Texte offen unter ihrem Kästchen. -->
+        <div class="services__grid services__grid--focus" data-services>
           <article class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
             <h3 class="service__title" id="svc-scheidung-title">Scheidung</h3>
@@ -311,47 +311,12 @@
           <section class="service__panel" id="svc-scheidung" aria-labelledby="svc-scheidung-title">
             <div class="service__panel-side">
               <p class="service__panel-title" aria-hidden="true">Scheidung</p>
-              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="text-link" href="#anfrage">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <div class="service__panel-text">
               <p>Ich unterstütze Sie im gesamten Scheidungsprozess. Sie können sich bereits zum Zeitpunkt einer beabsichtigten Trennung über sämtliche rechtlichen Folgen einer Scheidung bei mir informieren.</p>
               <p>Auch nach Erhalt eines Scheidungsantrags können Sie sich bei mir beraten lassen. Ich kommuniziere dabei immer offen, inwieweit eine rechtliche Vertretung für Sie notwendig ist&nbsp;– vor allem im Hinblick auf die zu erwartenden Kosten. Denn für das Scheidungsverfahren gilt zwar Anwaltszwang, d.&nbsp;h. der Scheidungsantrag muss über einen Rechtsanwalt gestellt werden. Für die Zustimmung zum Scheidungsantrag ist aber keine Vertretung durch einen Rechtsanwalt erforderlich. In diesem Fall sollten Sie sich aber mindestens zum Ablauf und vor allem zu den Folgen der fehlenden anwaltlichen Vertretung beraten lassen.</p>
               <p>Im Rahmen des Beratungsgesprächs informiere ich Sie zum Versorgungsausgleich und zu allen anderen Möglichkeiten, Ihre wirtschaftlichen Ansprüche durchzusetzen oder unberechtigte Forderungen abzuwehren, etwa beim Trennungsunterhalt oder beim Zugewinnausgleich. Ich vertrete Sie auch bei internationalen Scheidungen mit besonderem Schwerpunkt auf Russland und den GUS-Staaten sowie dem islamischen Rechtskreis.</p>
-            </div>
-          </section>
-
-          <article class="service">
-            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-            <h3 class="service__title" id="svc-gewalt-title">Häusliche Gewalt</h3>
-            <p class="service__text">Schutz für Sie und Ihre Kinder: Ich vertrete Sie in Gewaltschutzverfahren und berate Sie auch schon vor einem Antrag bei Gericht.</p>
-            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-gewalt"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
-          </article>
-          <section class="service__panel" id="svc-gewalt" aria-labelledby="svc-gewalt-title">
-            <div class="service__panel-side">
-              <p class="service__panel-title" aria-hidden="true">Häusliche Gewalt</p>
-              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-            </div>
-            <div class="service__panel-text">
-              <p>Ich vertrete Sie in Gewaltschutzsachen. Wenn Sie bereits einen Antrag bei der Rechtsantragsstelle des Gerichts gestellt haben, können Sie mich für eine Erstberatung kontaktieren. Ich bin auch im Rahmen der Verfahrenskostenhilfe tätig. Eine Anzeige bei der Polizei oder der Antrag auf Gewaltschutzmaßnahmen bedeutet meistens auch das Ende der persönlichen Beziehung zwischen den Partnern.</p>
-              <p>Sie können sich in Fällen häuslicher Gewalt auch vor einer Antragstellung bei Gericht anwaltlich beraten lassen. In der Regel sollten Gewaltschutzanträge direkt bei der Rechtsantragsstelle des Gerichts gestellt werden. Ich vertrete Sie auch in möglichen Strafverfahren im Zusammenhang mit häuslicher Gewalt.</p>
-              <p class="service__alert">Bei akuter Gefahr wählen Sie bitte sofort den Notruf <a href="tel:110">110</a>.</p>
-            </div>
-          </section>
-
-          <article class="service">
-            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
-            <h3 class="service__title" id="svc-sorge-title">Sorge- und Umgangsrecht</h3>
-            <p class="service__text">Wo die Kinder leben und wie der Kontakt zu beiden Eltern aussieht: Ich suche mit Ihnen Lösungen, die vor allem den Kindern gerecht werden.</p>
-            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-sorge"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
-          </article>
-          <section class="service__panel" id="svc-sorge" aria-labelledby="svc-sorge-title">
-            <div class="service__panel-side">
-              <p class="service__panel-title" aria-hidden="true">Sorge- und Umgangsrecht</p>
-              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-            </div>
-            <div class="service__panel-text">
-              <p>Verfahren im Sorge- und Umgangsrecht sind für Eltern eine besonders sensible Angelegenheit. Bei diesen Verfahren geht es vorrangig nicht um die Interessen der Eltern, sondern um die des Kindes, das meist am stärksten unter der Situation leidet. Ich begleite Sie während des gesamten Verfahrens und stehe Ihnen als verlässliche und fachkundige Stütze zur Seite.</p>
-              <p>In der emotional stark aufgeladenen Situation von Elternkonflikten um das gemeinsame Kind wirke ich in jedem Verfahren auf eine Lösung hin, etwa einen gerichtlichen Vergleich oder eine vertragliche Umgangsvereinbarung. Denn eine gemeinsame Lösung dient auch bei zerstrittenen Eltern im Regelfall dem Kindeswohl und Ihren Interessen mehr als eine einseitige Festlegung durch das Familiengericht. Wo Kooperation aber an ihre Grenzen stößt, nutze ich selbstverständlich alle prozessualen Möglichkeiten, um Ihre Interessen und das Kindeswohl zu schützen.</p>
             </div>
           </section>
 
@@ -364,30 +329,13 @@
           <section class="service__panel" id="svc-unterhalt" aria-labelledby="svc-unterhalt-title">
             <div class="service__panel-side">
               <p class="service__panel-title" aria-hidden="true">Unterhalt und Vermögen</p>
-              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="text-link" href="#anfrage">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <div class="service__panel-text">
               <p>Es gibt eine Reihe verschiedener Unterhaltsformen im Familienrecht&nbsp;– Kindesunterhalt, Verwandtenunterhalt, Ehegattenunterhalt usw. Ich prüfe für Sie, ob Sie einen Unterhaltsanspruch haben und wie Sie den Unterhalt rechtlich geltend machen können. Genauso vertrete ich Sie, wenn Sie sich unberechtigten Unterhaltsforderungen ausgesetzt sehen oder die Höhe von Unterhaltsforderungen überprüfen möchten.</p>
               <p>Allen Unterhaltsformen ist gemeinsam, dass die Berechnung auf Grundlage des Einkommens erfolgt. Hierzu hat der potenziell Unterhaltsberechtigte einen Auskunftsanspruch gegen den Unterhaltspflichtigen. Ich unterstütze Sie bei der Erteilung oder Einholung von Auskünften. Das aufgrund der Auskunft zu ermittelnde Einkommen bestimmt die Unterhaltspflicht. Hierbei ist genau darauf zu achten, welche Posten vom Einkommen abzugsfähig sind. Viele Unterhaltsschuldner versuchen, ihre Unterhaltslast zu drücken, indem das Einkommen kleingerechnet wird. Welche Posten tatsächlich abzugsfähig sind, richtet sich nach den gesetzlichen Anforderungen und der Rechtsprechung der Gerichte. Hierüber informiere ich Sie in einem Beratungsgespräch.</p>
               <p>Ich vertrete Sie auch im Bereich des Unterhaltsvorschusses. Unterhaltsvorschuss wird von den Unterhaltsvorschusskassen an Bedürftige gezahlt, wenn minderjährige Kinder bei einem der Elternteile leben. Häufig sieht sich der nicht betreuende Elternteil&nbsp;– oft nach Jahren&nbsp;– hohen Rückforderungen der Unterhaltsvorschusskasse ausgesetzt. In vielen Fällen kann diese Schuldenlast mit anwaltlicher Vertretung aber deutlich reduziert werden. Sie können einen Beratungstermin vereinbaren, um sich zu einer Unterhaltsvorschusssache zu informieren.</p>
               <p>Auch beim Vermögen unterstütze ich Sie. Bei der Scheidung wird nicht das gesamte Eigentum geteilt, sondern nur der Zugewinn, also das, was ein Ehepartner während der Ehe hinzugewonnen hat. Ich ermittle, was tatsächlich ausgeglichen werden muss&nbsp;– etwa beim Haus, bei Ersparnissen oder der gemeinsamen Wohnung&nbsp;– und setze mich für eine faire Aufteilung ein.</p>
-            </div>
-          </section>
-
-          <article class="service">
-            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
-            <h3 class="service__title" id="svc-vkh-title">Verfahrenskostenhilfe</h3>
-            <p class="service__text">Wenig Einkommen? Ich beantrage für Sie Verfahrenskostenhilfe, damit die Kosten kein Hindernis sind.</p>
-            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-vkh"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
-          </article>
-          <section class="service__panel" id="svc-vkh" aria-labelledby="svc-vkh-title">
-            <div class="service__panel-side">
-              <p class="service__panel-title" aria-hidden="true">Verfahrenskostenhilfe</p>
-              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-            </div>
-            <div class="service__panel-text">
-              <p>Wenn Sie nicht über genug Einkommen verfügen, beantrage ich für Sie Verfahrenskostenhilfe. Sie müssen dazu das Formular über die wirtschaftlichen Verhältnisse ausfüllen. Bei Fragen hierzu unterstütze ich Sie gerne. Eine Ausfüllhilfe für das Formular erhalten Sie auf <a href="https://www.pkh-formular.de" target="_blank" rel="noopener">www.pkh-formular.de</a>.</p>
-              <p>Mit der Verfahrenskostenhilfe übernimmt die Staatskasse die Gerichtskosten und meine Gebühren&nbsp;– je nach Einkommen ganz oder gegen Ratenzahlung. In der Regel haben Sie einen Anspruch auf Verfahrenskostenhilfe, wenn Sie Sozialleistungen erhalten (z.&nbsp;B. Bürgergeld oder Grundsicherung). Sie können auch Verfahrenskostenhilfe erhalten, wenn Sie über ein geringes Einkommen verfügen. In diesem Fall kann es sein, dass das Gericht eine Ratenzahlung festsetzt.</p>
             </div>
           </section>
 
@@ -400,11 +348,72 @@
           <section class="service__panel" id="svc-international" aria-labelledby="svc-international-title">
             <div class="service__panel-side">
               <p class="service__panel-title" aria-hidden="true">Internationales Familienrecht</p>
-              <a class="text-link" href="#kontakt">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="text-link" href="#anfrage">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <div class="service__panel-text">
               <p>Auslandsbezüge können auf verschiedene Weise entstehen, z.&nbsp;B. durch eine Eheschließung im Ausland mit anschließender Einreise der Ehegatten, durch die ausländische Staatsangehörigkeit eines oder beider Ehepartner oder auch nur durch einen geplanten Wegzug ins Ausland. Die Folgen sind unterschiedlich und hängen von verschiedenen Faktoren ab. Besonders schwierig ist der Auslandsbezug bei Ländern außerhalb der Europäischen Union, z.&nbsp;B. Russland, Iran, Vietnam oder anderen Ländern.</p>
               <p>Eine anwaltliche Beratung ist dabei meistens sinnvoll, weil die Wirkungen von Land zu Land sehr unterschiedlich sein können. Die möglichen Auswirkungen sind für die Ehegatten meistens nicht leicht erkennbar. Im Fall einer Trennung oder Scheidung kann das zu bösen Überraschungen führen. Die möglichen Folgen können vorab durch Vereinbarungen abgefedert werden, z.&nbsp;B. durch einen Ehevertrag mit deutscher Rechtswahlklausel. Hierbei unterstütze ich Sie.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- weitere Leistungen: kompaktere, zurückhaltendere Kästchen -->
+        <div class="services__grid services__grid--minor" data-services>
+          <article class="service service--minor">
+            <div class="service__head">
+              <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
+              <h3 class="service__title" id="svc-sorge-title">Sorge- und Umgangsrecht</h3>
+            </div>
+            <p class="service__text">Wo die Kinder leben und wie der Kontakt zu beiden Eltern aussieht: Ich suche mit Ihnen Lösungen, die vor allem den Kindern gerecht werden.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-sorge"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-sorge" aria-labelledby="svc-sorge-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Sorge- und Umgangsrecht</p>
+              <a class="text-link" href="#anfrage">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Verfahren im Sorge- und Umgangsrecht sind für Eltern eine besonders sensible Angelegenheit. Bei diesen Verfahren geht es vorrangig nicht um die Interessen der Eltern, sondern um die des Kindes, das meist am stärksten unter der Situation leidet. Ich begleite Sie während des gesamten Verfahrens und stehe Ihnen als verlässliche und fachkundige Stütze zur Seite.</p>
+              <p>In der emotional stark aufgeladenen Situation von Elternkonflikten um das gemeinsame Kind wirke ich in jedem Verfahren auf eine Lösung hin, etwa einen gerichtlichen Vergleich oder eine vertragliche Umgangsvereinbarung. Denn eine gemeinsame Lösung dient auch bei zerstrittenen Eltern im Regelfall dem Kindeswohl und Ihren Interessen mehr als eine einseitige Festlegung durch das Familiengericht. Wo Kooperation aber an ihre Grenzen stößt, nutze ich selbstverständlich alle prozessualen Möglichkeiten, um Ihre Interessen und das Kindeswohl zu schützen.</p>
+            </div>
+          </section>
+
+          <article class="service service--minor">
+            <div class="service__head">
+              <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              <h3 class="service__title" id="svc-gewalt-title">Häusliche Gewalt</h3>
+            </div>
+            <p class="service__text">Schutz für Sie und Ihre Kinder: Ich vertrete Sie in Gewaltschutzverfahren und berate Sie auch schon vor einem Antrag bei Gericht.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-gewalt"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-gewalt" aria-labelledby="svc-gewalt-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Häusliche Gewalt</p>
+              <a class="text-link" href="#anfrage">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Ich vertrete Sie in Gewaltschutzsachen. Wenn Sie bereits einen Antrag bei der Rechtsantragsstelle des Gerichts gestellt haben, können Sie mich für eine Erstberatung kontaktieren. Ich bin auch im Rahmen der Verfahrenskostenhilfe tätig. Eine Anzeige bei der Polizei oder der Antrag auf Gewaltschutzmaßnahmen bedeutet meistens auch das Ende der persönlichen Beziehung zwischen den Partnern.</p>
+              <p>Sie können sich in Fällen häuslicher Gewalt auch vor einer Antragstellung bei Gericht anwaltlich beraten lassen. In der Regel sollten Gewaltschutzanträge direkt bei der Rechtsantragsstelle des Gerichts gestellt werden. Ich vertrete Sie auch in möglichen Strafverfahren im Zusammenhang mit häuslicher Gewalt.</p>
+              <p class="service__alert">Bei akuter Gefahr wählen Sie bitte sofort den Notruf <a href="tel:110">110</a>.</p>
+            </div>
+          </section>
+
+          <article class="service service--minor">
+            <div class="service__head">
+              <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
+              <h3 class="service__title" id="svc-vkh-title">Verfahrenskostenhilfe</h3>
+            </div>
+            <p class="service__text">Wenig Einkommen? Ich beantrage für Sie Verfahrenskostenhilfe, damit die Kosten kein Hindernis sind.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-vkh"><span class="service__toggle-label">Weiterlesen</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-vkh" aria-labelledby="svc-vkh-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Verfahrenskostenhilfe</p>
+              <a class="text-link" href="#anfrage">Anliegen schildern <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Wenn Sie nicht über genug Einkommen verfügen, beantrage ich für Sie Verfahrenskostenhilfe. Sie müssen dazu das Formular über die wirtschaftlichen Verhältnisse ausfüllen. Bei Fragen hierzu unterstütze ich Sie gerne. Eine Ausfüllhilfe für das Formular erhalten Sie auf <a href="https://www.pkh-formular.de" target="_blank" rel="noopener">www.pkh-formular.de</a>.</p>
+              <p>Mit der Verfahrenskostenhilfe übernimmt die Staatskasse die Gerichtskosten und meine Gebühren&nbsp;– je nach Einkommen ganz oder gegen Ratenzahlung. In der Regel haben Sie einen Anspruch auf Verfahrenskostenhilfe, wenn Sie Sozialleistungen erhalten (z.&nbsp;B. Bürgergeld oder Grundsicherung). Sie können auch Verfahrenskostenhilfe erhalten, wenn Sie über ein geringes Einkommen verfügen. In diesem Fall kann es sein, dass das Gericht eine Ratenzahlung festsetzt.</p>
             </div>
           </section>
         </div>
@@ -415,7 +424,7 @@
             <h3 class="services__more-title">Weitere Anliegen</h3>
             <p>Auch außerhalb des Familienrechts bin ich für Sie da, etwa im allgemeinen Zivilrecht. Fragen Sie mich einfach an.</p>
           </div>
-          <a class="text-link" href="#kontakt">
+          <a class="text-link" href="#anfrage">
             Anliegen schildern
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -478,7 +487,7 @@
               Beratung auch auf Englisch und Russisch&nbsp;– für internationale Mandanten
             </li>
           </ul>
-          <a class="btn btn--primary btn--lg why__cta" href="#kontakt">
+          <a class="btn btn--primary btn--lg why__cta" href="#anfrage">
             Unverbindlich anfragen
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -582,7 +591,7 @@
         </ol>
 
         <div class="process__cta">
-          <a class="btn btn--primary btn--lg" href="#kontakt">
+          <a class="btn btn--primary btn--lg" href="#anfrage">
             Unverbindlich anfragen
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -629,7 +638,7 @@
               Kanzlei am Kurfürstendamm, Berlin
             </li>
           </ul>
-          <a class="btn btn--primary btn--lg about__cta" href="#kontakt">
+          <a class="btn btn--primary btn--lg about__cta" href="#anfrage">
             Unverbindlich anfragen
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -733,7 +742,7 @@
         </div>
 
         <!-- Versand über kontakt.php auf dem eigenen STRATO-Webspace (kein Drittanbieter) -->
-        <form class="contact-form" action="kontakt.php" method="POST" enctype="multipart/form-data" novalidate>
+        <form class="contact-form" id="anfrage" action="kontakt.php" method="POST" enctype="multipart/form-data" novalidate>
           <input type="hidden" name="ts" value="">
           <div class="contact-form__hp" aria-hidden="true">
             <label for="f-website">Bitte leer lassen</label>
@@ -798,7 +807,7 @@
     <div class="container">
       <div class="site-footer__top">
         <p class="site-footer__claim" data-fit>Sie müssen diesen Weg nicht allein gehen.</p>
-        <a class="btn btn--primary btn--lg" href="#kontakt">
+        <a class="btn btn--primary btn--lg" href="#anfrage">
           Unverbindlich anfragen
           <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
@@ -834,6 +843,6 @@
   <script src="vendor/gsap.min.js" defer></script>
   <script src="vendor/ScrollTrigger.min.js" defer></script>
   <script src="vendor/lenis.min.js" defer></script>
-  <script src="script.js?v=19" defer></script>
+  <script src="script.js?v=20" defer></script>
 </body>
 </html>

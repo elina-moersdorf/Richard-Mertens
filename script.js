@@ -91,7 +91,9 @@
     if (!target) return;
 
     event.preventDefault();
-    const offset = id === '#start' ? 0 : -(nav ? nav.offsetHeight : 0);
+    // Abstand unter der fixierten Navigation: scroll-margin-top des Ziels (z. B. Formular), sonst Navi-Höhe
+    const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || (nav ? nav.offsetHeight : 0);
+    const offset = id === '#start' ? 0 : -margin;
 
     if (lenis) {
       lenis.scrollTo(id === '#start' ? 0 : target, { offset });
@@ -144,25 +146,29 @@
   }
 
   /* ---------- Leistungen: Kästchen öffnen den ausführlichen Text unter ihrer Reihe ---------- */
-  const servicesGrid = document.querySelector('[data-services]');
-  if (servicesGrid) {
-    const cards = [...servicesGrid.querySelectorAll('.service')];
+  // Zwei Gruppen (Schwerpunkte und weitere Leistungen), aber immer nur ein Kästchen offen
+  const serviceGrids = [...document.querySelectorAll('[data-services]')];
+  if (serviceGrids.length) {
+    const cards = serviceGrids.flatMap((grid) => [...grid.querySelectorAll('.service')]);
     const panelOf = (card) => document.getElementById(card.querySelector('.service__toggle').getAttribute('aria-controls'));
     let active = null;
 
-    // Kästchen bekommen die Reihenfolge 0, 2, 4 …; das offene Feld steht direkt hinter
-    // dem letzten Kästchen seiner Reihe und nimmt die volle Breite ein.
+    // Kästchen bekommen je Gruppe die Reihenfolge 0, 2, 4 …; das offene Feld steht direkt
+    // hinter dem letzten Kästchen seiner Reihe und nimmt die volle Breite ein.
     const place = () => {
-      const cols = getComputedStyle(servicesGrid).gridTemplateColumns.split(' ').length;
-      cards.forEach((card, i) => { card.style.order = String(i * 2); });
-      if (!active) return;
-      const i = cards.indexOf(active);
-      const last = Math.min(Math.ceil((i + 1) / cols) * cols, cards.length) - 1;
-      const panel = panelOf(active);
-      panel.style.order = String(last * 2 + 1);
-      const grid = servicesGrid.getBoundingClientRect();
-      const card = active.getBoundingClientRect();
-      panel.style.setProperty('--notch-x', `${Math.round(card.left + card.width / 2 - grid.left)}px`);
+      serviceGrids.forEach((grid) => {
+        const items = [...grid.querySelectorAll('.service')];
+        items.forEach((card, i) => { card.style.order = String(i * 2); });
+        if (!active || !grid.contains(active)) return;
+        const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+        const i = items.indexOf(active);
+        const last = Math.min(Math.ceil((i + 1) / cols) * cols, items.length) - 1;
+        const panel = panelOf(active);
+        panel.style.order = String(last * 2 + 1);
+        const box = grid.getBoundingClientRect();
+        const card = active.getBoundingClientRect();
+        panel.style.setProperty('--notch-x', `${Math.round(card.left + card.width / 2 - box.left)}px`);
+      });
     };
 
     const setOpen = (card, open) => {
@@ -213,9 +219,23 @@
       toggle.focus();
     });
 
-    servicesGrid.classList.add('is-enhanced');
     place();
     window.addEventListener('resize', place);
+  }
+
+  /* ---------- Aufruf mit Sprungmarke (z. B. von Impressum aus auf #anfrage) ----------
+     Nach dem Laden (Schriften, Überschriften-Anpassung) noch einmal exakt ausrichten,
+     damit das Ziel knapp unter der Navigation steht. */
+  if (location.hash.length > 1) {
+    window.addEventListener('load', () => {
+      let target = null;
+      try { target = document.querySelector(decodeURIComponent(location.hash)); } catch (e) { /* ungültige Marke */ }
+      if (!target) return;
+      const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || (nav ? nav.offsetHeight : 0);
+      const y = target.getBoundingClientRect().top + window.scrollY - margin;
+      if (lenis) lenis.scrollTo(y, { immediate: true });
+      else window.scrollTo(0, y);
+    });
   }
 
   /* ---------- Kontaktformular (kontakt.php auf dem eigenen Webspace) ---------- */

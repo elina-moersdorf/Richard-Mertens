@@ -17,7 +17,7 @@
   <link rel="preload" href="../fonts/SourceSans3-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/SourceSerif4-cyrillic-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../fonts/SourceSans3-cyrillic-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../style.css?v=21">
+  <link rel="stylesheet" href="../style.css?v=22">
   <!-- Consent Mode v2 + banner: must load before any Google service -->
   <script src="../consent.js?v=3"></script>
 
@@ -96,7 +96,7 @@
         <a class="icon-btn" href="tel:+493098312332" aria-label="Позвонить: +49 30 98312332">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </a>
-        <a class="btn btn--primary btn--sm" href="#contact"><span>Написать<span class="hide-xs"> мне</span></span></a>
+        <a class="btn btn--primary btn--sm" href="#enquiry"><span>Написать<span class="hide-xs"> мне</span></span></a>
       </div>
     </nav>
   </header>
@@ -138,7 +138,7 @@
             </ul>
 
             <div class="hero__ctas">
-              <a class="btn btn--primary btn--lg" href="#contact">
+              <a class="btn btn--primary btn--lg" href="#enquiry">
                 Отправить запрос
                 <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </a>
@@ -248,8 +248,8 @@
               <svg class="icon problem__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 16 3-8 3 8c-.87.65-1.920 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
               <span class="problem__index" aria-hidden="true">04</span>
             </div>
-            <h3 class="problem__title">Потеряю ли я&nbsp;половину всего?</h3>
-            <p class="problem__text">Многие боятся при разводе лишиться половины своего имущества. На&nbsp;самом деле всё устроено не&nbsp;совсем так&nbsp;– но&nbsp;эта тревога понятна.</p>
+            <h3 class="problem__title">Что будет с&nbsp;нашим общим имуществом?</h3>
+            <p class="problem__text">Многие думают, что теряют половину своего имущества. На&nbsp;самом деле всё устроено не&nbsp;совсем так&nbsp;– но&nbsp;эта тревога понятна.</p>
           </li>
         </ul>
 
@@ -274,7 +274,7 @@
           Обычно я&nbsp;отвечаю в&nbsp;течение 24&nbsp;часов.
         </p>
         <div class="bridge__ctas">
-          <a class="btn btn--primary btn--lg" href="#contact">
+          <a class="btn btn--primary btn--lg" href="#enquiry">
             Отправить запрос
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -297,9 +297,9 @@
           <p class="section-lead">Я&nbsp;консультирую Вас и&nbsp;представляю Ваши интересы по&nbsp;всем ключевым вопросам семейного права.</p>
         </header>
 
-        <!-- Six services: clicking a box opens the detailed text in a wide panel below its row
+        <!-- Six services: Richard's three focus areas on top (large), three more below (compact). Clicking a box opens the detailed text in a wide panel below its row
              (script.js). Without JavaScript, all texts are shown open below their box. -->
-        <div class="services__grid" data-services>
+        <div class="services__grid services__grid--focus" data-services>
           <article class="service">
             <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
             <h3 class="service__title" id="svc-divorce-title">Развод</h3>
@@ -309,47 +309,12 @@
           <section class="service__panel" id="svc-divorce" aria-labelledby="svc-divorce-title">
             <div class="service__panel-side">
               <p class="service__panel-title" aria-hidden="true">Развод</p>
-              <a class="text-link" href="#contact">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="text-link" href="#enquiry">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <div class="service__panel-text">
               <p>Я&nbsp;сопровождаю Вас на&nbsp;всех этапах бракоразводного процесса. Уже тогда, когда Вы только планируете расстаться, Вы можете узнать у&nbsp;меня обо всех правовых последствиях развода.</p>
               <p>Вы также можете обратиться ко&nbsp;мне за&nbsp;консультацией после получения заявления о&nbsp;разводе. Я&nbsp;всегда открыто говорю о&nbsp;том, насколько Вам необходимо юридическое представительство,&nbsp;– прежде всего с&nbsp;учётом ожидаемых расходов. В&nbsp;бракоразводном процессе участие адвоката обязательно, то есть заявление о&nbsp;разводе должно быть подано через адвоката. Однако для согласия с&nbsp;заявлением о&nbsp;разводе представительство адвоката не&nbsp;требуется. В&nbsp;этом случае Вам всё же стоит как минимум проконсультироваться о&nbsp;порядке процедуры и&nbsp;прежде всего о&nbsp;последствиях отсутствия адвокатского представительства.</p>
               <p>На&nbsp;консультации я&nbsp;рассказываю Вам о&nbsp;разделе пенсионных прав (Versorgungsausgleich) и&nbsp;обо всех других возможностях отстоять свои финансовые требования или отразить необоснованные претензии, например в&nbsp;вопросах содержания на&nbsp;период раздельного проживания или выравнивания прироста имущества (Zugewinnausgleich). Я&nbsp;также представляю Ваши интересы при международных разводах&nbsp;– с&nbsp;особым акцентом на&nbsp;Россию и&nbsp;страны СНГ, а&nbsp;также на&nbsp;исламскую правовую систему.</p>
-            </div>
-          </section>
-
-          <article class="service">
-            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-            <h3 class="service__title" id="svc-violence-title">Домашнее насилие</h3>
-            <p class="service__text">Защита для Вас и&nbsp;Ваших детей: я&nbsp;представляю Ваши интересы в&nbsp;делах о&nbsp;защите от&nbsp;насилия и&nbsp;консультирую Вас ещё до&nbsp;подачи заявления в&nbsp;суд.</p>
-            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-violence"><span class="service__toggle-label">Читать далее</span><span class="service__plus" aria-hidden="true"></span></button>
-          </article>
-          <section class="service__panel" id="svc-violence" aria-labelledby="svc-violence-title">
-            <div class="service__panel-side">
-              <p class="service__panel-title" aria-hidden="true">Домашнее насилие</p>
-              <a class="text-link" href="#contact">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-            </div>
-            <div class="service__panel-text">
-              <p>Я&nbsp;представляю Ваши интересы в&nbsp;делах по&nbsp;немецкому Закону о&nbsp;защите от&nbsp;насилия (Gewaltschutzgesetz). Если Вы уже подали заявление в&nbsp;приёмную суда (Rechtsantragsstelle), Вы можете обратиться ко&nbsp;мне за&nbsp;первичной консультацией. Я&nbsp;также работаю с&nbsp;клиентами, получающими помощь в&nbsp;оплате судебных расходов (Verfahrenskostenhilfe). Заявление в&nbsp;полицию или ходатайство о&nbsp;мерах защиты от&nbsp;насилия, как правило, означает и&nbsp;конец личных отношений между партнёрами.</p>
-              <p>В&nbsp;случаях домашнего насилия Вы также можете получить консультацию адвоката до&nbsp;подачи заявления в&nbsp;суд. Как правило, заявления о&nbsp;защите от&nbsp;насилия следует подавать непосредственно в&nbsp;приёмную суда. Я&nbsp;также представляю Ваши интересы в&nbsp;возможных уголовных делах, связанных с&nbsp;домашним насилием.</p>
-              <p class="service__alert">При непосредственной опасности немедленно звоните по&nbsp;номеру экстренной помощи <a href="tel:110">110</a>.</p>
-            </div>
-          </section>
-
-          <article class="service">
-            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
-            <h3 class="service__title" id="svc-custody-title">Опека и&nbsp;общение с&nbsp;детьми</h3>
-            <p class="service__text">Где будут жить дети и&nbsp;как будет устроено их общение с&nbsp;обоими родителями: я&nbsp;ищу вместе с&nbsp;Вами решения, которые прежде всего отвечают интересам детей.</p>
-            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-custody"><span class="service__toggle-label">Читать далее</span><span class="service__plus" aria-hidden="true"></span></button>
-          </article>
-          <section class="service__panel" id="svc-custody" aria-labelledby="svc-custody-title">
-            <div class="service__panel-side">
-              <p class="service__panel-title" aria-hidden="true">Опека и&nbsp;общение с&nbsp;детьми</p>
-              <a class="text-link" href="#contact">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-            </div>
-            <div class="service__panel-text">
-              <p>Дела об&nbsp;опеке и&nbsp;праве на&nbsp;общение с&nbsp;ребёнком&nbsp;– особенно деликатная тема для родителей. В&nbsp;таких делах на&nbsp;первом месте стоят интересы не&nbsp;родителей, а&nbsp;ребёнка, который чаще всего больше всех страдает от&nbsp;сложившейся ситуации. Я&nbsp;сопровождаю Вас на&nbsp;протяжении всего процесса и&nbsp;остаюсь для Вас надёжной и&nbsp;компетентной опорой.</p>
-              <p>В&nbsp;эмоционально напряжённой ситуации, когда родители спорят о&nbsp;совместном ребёнке, я&nbsp;в&nbsp;каждом деле стремлюсь к&nbsp;согласованному решению&nbsp;– например, к&nbsp;мировому соглашению в&nbsp;суде или договорённости об&nbsp;общении с&nbsp;ребёнком. Ведь совместное решение даже при конфликте между родителями, как правило, лучше служит благу ребёнка и&nbsp;Вашим интересам, чем одностороннее решение суда по&nbsp;семейным делам. Если же возможности для сотрудничества исчерпаны, я, разумеется, использую все процессуальные средства, чтобы защитить Ваши интересы и&nbsp;благо ребёнка.</p>
             </div>
           </section>
 
@@ -362,30 +327,13 @@
           <section class="service__panel" id="svc-maintenance" aria-labelledby="svc-maintenance-title">
             <div class="service__panel-side">
               <p class="service__panel-title" aria-hidden="true">Алименты и&nbsp;имущество</p>
-              <a class="text-link" href="#contact">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="text-link" href="#enquiry">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <div class="service__panel-text">
               <p>В&nbsp;семейном праве существует целый ряд видов содержания&nbsp;– алименты на&nbsp;детей, содержание родственников, содержание супруга и&nbsp;т.&nbsp;д. Я&nbsp;проверяю, есть ли у&nbsp;Вас право на&nbsp;содержание и&nbsp;как его можно взыскать. Точно так же я&nbsp;представляю Ваши интересы, если к&nbsp;Вам предъявлены необоснованные требования об&nbsp;уплате алиментов или Вы хотите проверить их размер.</p>
               <p>Общее для всех видов содержания то, что их размер рассчитывается исходя из&nbsp;дохода. Для этого лицо, потенциально имеющее право на&nbsp;содержание, может требовать от&nbsp;обязанного лица сведений о&nbsp;доходах. Я&nbsp;помогаю Вам предоставить или получить эти сведения. Определённый на&nbsp;их основе доход и&nbsp;задаёт размер обязательства по&nbsp;содержанию. При этом важно внимательно проверить, какие статьи можно вычесть из&nbsp;дохода. Многие плательщики алиментов пытаются снизить свою нагрузку, искусственно занижая доход. Какие статьи действительно подлежат вычету, определяется требованиями закона и&nbsp;судебной практикой. Об&nbsp;этом я&nbsp;расскажу Вам на&nbsp;консультации.</p>
               <p>Я&nbsp;также представляю Ваши интересы в&nbsp;вопросах авансовых алиментов (Unterhaltsvorschuss). Их выплачивают государственные кассы авансовых алиментов нуждающимся, если несовершеннолетние дети живут с&nbsp;одним из&nbsp;родителей. Родитель, который не&nbsp;живёт с&nbsp;ребёнком, нередко&nbsp;– часто спустя годы&nbsp;– сталкивается с&nbsp;крупными требованиями о&nbsp;возврате со&nbsp;стороны такой кассы. Во&nbsp;многих случаях эту задолженность можно существенно уменьшить с&nbsp;помощью адвоката. Вы можете записаться на&nbsp;консультацию, чтобы получить информацию по&nbsp;делу об&nbsp;авансовых алиментах.</p>
               <p>Я&nbsp;помогаю Вам и&nbsp;в&nbsp;имущественных вопросах. При разводе делится не&nbsp;всё имущество, а&nbsp;только его прирост (Zugewinn), то есть то, что супруг приобрёл за&nbsp;время брака. Я&nbsp;выясняю, что действительно подлежит выравниванию,&nbsp;– например, в&nbsp;отношении дома, сбережений или совместной квартиры&nbsp;– и&nbsp;добиваюсь справедливого раздела.</p>
-            </div>
-          </section>
-
-          <article class="service">
-            <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
-            <h3 class="service__title" id="svc-legal-aid-title">Помощь с&nbsp;судебными расходами</h3>
-            <p class="service__text">Небольшой доход? Я&nbsp;подам за&nbsp;Вас заявление о&nbsp;помощи в&nbsp;оплате судебных расходов, чтобы расходы не&nbsp;стали препятствием.</p>
-            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-legal-aid"><span class="service__toggle-label">Читать далее</span><span class="service__plus" aria-hidden="true"></span></button>
-          </article>
-          <section class="service__panel" id="svc-legal-aid" aria-labelledby="svc-legal-aid-title">
-            <div class="service__panel-side">
-              <p class="service__panel-title" aria-hidden="true">Помощь с&nbsp;судебными расходами</p>
-              <a class="text-link" href="#contact">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-            </div>
-            <div class="service__panel-text">
-              <p>Если Ваших доходов недостаточно, я&nbsp;подам за&nbsp;Вас заявление о&nbsp;помощи в&nbsp;оплате судебных расходов (Verfahrenskostenhilfe). Для этого Вам нужно заполнить форму о&nbsp;Вашем личном и&nbsp;финансовом положении. Если у&nbsp;Вас возникнут вопросы, я&nbsp;с&nbsp;удовольствием помогу. Подсказки по&nbsp;заполнению формы (на&nbsp;немецком языке) Вы найдёте на&nbsp;сайте <a href="https://www.pkh-formular.de" target="_blank" rel="noopener">www.pkh-formular.de</a>.</p>
-              <p>При такой помощи государство берёт на&nbsp;себя судебные расходы и&nbsp;мой гонорар&nbsp;– в&nbsp;зависимости от&nbsp;дохода полностью или с&nbsp;выплатой в&nbsp;рассрочку. Как правило, право на&nbsp;эту помощь у&nbsp;Вас есть, если Вы получаете социальные пособия (например, Bürgergeld или Grundsicherung). Получить её можно и&nbsp;при небольшом доходе. В&nbsp;этом случае суд может назначить выплату в&nbsp;рассрочку.</p>
             </div>
           </section>
 
@@ -398,11 +346,72 @@
           <section class="service__panel" id="svc-international" aria-labelledby="svc-international-title">
             <div class="service__panel-side">
               <p class="service__panel-title" aria-hidden="true">Международное семейное право</p>
-              <a class="text-link" href="#contact">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="text-link" href="#enquiry">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <div class="service__panel-text">
               <p>Связь с&nbsp;другой страной может возникнуть по-разному: например, при заключении брака за&nbsp;рубежом с&nbsp;последующим переездом супругов в&nbsp;Германию, при иностранном гражданстве одного или обоих супругов или даже просто при планируемом переезде за&nbsp;границу. Последствия бывают разными и&nbsp;зависят от&nbsp;многих факторов. Особенно сложной ситуация становится, если речь идёт о&nbsp;странах за&nbsp;пределами Европейского союза, например о&nbsp;России, Иране, Вьетнаме или других государствах.</p>
               <p>Поэтому консультация адвоката здесь, как правило, имеет смысл: последствия могут сильно различаться от&nbsp;страны к&nbsp;стране. Супругам зачастую непросто их распознать. При расставании или разводе это может обернуться неприятными сюрпризами. Возможные последствия можно смягчить заранее с&nbsp;помощью договорённостей, например брачного договора (Ehevertrag) с&nbsp;оговоркой о&nbsp;выборе немецкого права. В&nbsp;этом я&nbsp;Вам помогу.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- weitere Leistungen: kompaktere, zurückhaltendere Kästchen -->
+        <div class="services__grid services__grid--minor" data-services>
+          <article class="service service--minor">
+            <div class="service__head">
+              <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
+              <h3 class="service__title" id="svc-custody-title">Опека и&nbsp;общение с&nbsp;детьми</h3>
+            </div>
+            <p class="service__text">Где будут жить дети и&nbsp;как будет устроено их общение с&nbsp;обоими родителями: я&nbsp;ищу вместе с&nbsp;Вами решения, которые прежде всего отвечают интересам детей.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-custody"><span class="service__toggle-label">Читать далее</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-custody" aria-labelledby="svc-custody-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Опека и&nbsp;общение с&nbsp;детьми</p>
+              <a class="text-link" href="#enquiry">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Дела об&nbsp;опеке и&nbsp;праве на&nbsp;общение с&nbsp;ребёнком&nbsp;– особенно деликатная тема для родителей. В&nbsp;таких делах на&nbsp;первом месте стоят интересы не&nbsp;родителей, а&nbsp;ребёнка, который чаще всего больше всех страдает от&nbsp;сложившейся ситуации. Я&nbsp;сопровождаю Вас на&nbsp;протяжении всего процесса и&nbsp;остаюсь для Вас надёжной и&nbsp;компетентной опорой.</p>
+              <p>В&nbsp;эмоционально напряжённой ситуации, когда родители спорят о&nbsp;совместном ребёнке, я&nbsp;в&nbsp;каждом деле стремлюсь к&nbsp;согласованному решению&nbsp;– например, к&nbsp;мировому соглашению в&nbsp;суде или договорённости об&nbsp;общении с&nbsp;ребёнком. Ведь совместное решение даже при конфликте между родителями, как правило, лучше служит благу ребёнка и&nbsp;Вашим интересам, чем одностороннее решение суда по&nbsp;семейным делам. Если же возможности для сотрудничества исчерпаны, я, разумеется, использую все процессуальные средства, чтобы защитить Ваши интересы и&nbsp;благо ребёнка.</p>
+            </div>
+          </section>
+
+          <article class="service service--minor">
+            <div class="service__head">
+              <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              <h3 class="service__title" id="svc-violence-title">Домашнее насилие</h3>
+            </div>
+            <p class="service__text">Защита для Вас и&nbsp;Ваших детей: я&nbsp;представляю Ваши интересы в&nbsp;делах о&nbsp;защите от&nbsp;насилия и&nbsp;консультирую Вас ещё до&nbsp;подачи заявления в&nbsp;суд.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-violence"><span class="service__toggle-label">Читать далее</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-violence" aria-labelledby="svc-violence-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Домашнее насилие</p>
+              <a class="text-link" href="#enquiry">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Я&nbsp;представляю Ваши интересы в&nbsp;делах по&nbsp;немецкому Закону о&nbsp;защите от&nbsp;насилия (Gewaltschutzgesetz). Если Вы уже подали заявление в&nbsp;приёмную суда (Rechtsantragsstelle), Вы можете обратиться ко&nbsp;мне за&nbsp;первичной консультацией. Я&nbsp;также работаю с&nbsp;клиентами, получающими помощь в&nbsp;оплате судебных расходов (Verfahrenskostenhilfe). Заявление в&nbsp;полицию или ходатайство о&nbsp;мерах защиты от&nbsp;насилия, как правило, означает и&nbsp;конец личных отношений между партнёрами.</p>
+              <p>В&nbsp;случаях домашнего насилия Вы также можете получить консультацию адвоката до&nbsp;подачи заявления в&nbsp;суд. Как правило, заявления о&nbsp;защите от&nbsp;насилия следует подавать непосредственно в&nbsp;приёмную суда. Я&nbsp;также представляю Ваши интересы в&nbsp;возможных уголовных делах, связанных с&nbsp;домашним насилием.</p>
+              <p class="service__alert">При непосредственной опасности немедленно звоните по&nbsp;номеру экстренной помощи <a href="tel:110">110</a>.</p>
+            </div>
+          </section>
+
+          <article class="service service--minor">
+            <div class="service__head">
+              <svg class="icon service__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg>
+              <h3 class="service__title" id="svc-legal-aid-title">Помощь с&nbsp;судебными расходами</h3>
+            </div>
+            <p class="service__text">Небольшой доход? Я&nbsp;подам за&nbsp;Вас заявление о&nbsp;помощи в&nbsp;оплате судебных расходов, чтобы расходы не&nbsp;стали препятствием.</p>
+            <button class="service__toggle" type="button" aria-expanded="false" aria-controls="svc-legal-aid"><span class="service__toggle-label">Читать далее</span><span class="service__plus" aria-hidden="true"></span></button>
+          </article>
+          <section class="service__panel" id="svc-legal-aid" aria-labelledby="svc-legal-aid-title">
+            <div class="service__panel-side">
+              <p class="service__panel-title" aria-hidden="true">Помощь с&nbsp;судебными расходами</p>
+              <a class="text-link" href="#enquiry">Описать ситуацию <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <div class="service__panel-text">
+              <p>Если Ваших доходов недостаточно, я&nbsp;подам за&nbsp;Вас заявление о&nbsp;помощи в&nbsp;оплате судебных расходов (Verfahrenskostenhilfe). Для этого Вам нужно заполнить форму о&nbsp;Вашем личном и&nbsp;финансовом положении. Если у&nbsp;Вас возникнут вопросы, я&nbsp;с&nbsp;удовольствием помогу. Подсказки по&nbsp;заполнению формы (на&nbsp;немецком языке) Вы найдёте на&nbsp;сайте <a href="https://www.pkh-formular.de" target="_blank" rel="noopener">www.pkh-formular.de</a>.</p>
+              <p>При такой помощи государство берёт на&nbsp;себя судебные расходы и&nbsp;мой гонорар&nbsp;– в&nbsp;зависимости от&nbsp;дохода полностью или с&nbsp;выплатой в&nbsp;рассрочку. Как правило, право на&nbsp;эту помощь у&nbsp;Вас есть, если Вы получаете социальные пособия (например, Bürgergeld или Grundsicherung). Получить её можно и&nbsp;при небольшом доходе. В&nbsp;этом случае суд может назначить выплату в&nbsp;рассрочку.</p>
             </div>
           </section>
         </div>
@@ -413,7 +422,7 @@
             <h3 class="services__more-title">Другие вопросы</h3>
             <p>Я&nbsp;помогаю Вам и&nbsp;за&nbsp;пределами семейного права, например в&nbsp;общем гражданском праве. Просто обратитесь ко&nbsp;мне.</p>
           </div>
-          <a class="text-link" href="#contact">
+          <a class="text-link" href="#enquiry">
             Описать ситуацию
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -477,7 +486,7 @@
               Консультации также на&nbsp;немецком и&nbsp;английском&nbsp;– для международных клиентов
             </li>
           </ul>
-          <a class="btn btn--primary btn--lg why__cta" href="#contact">
+          <a class="btn btn--primary btn--lg why__cta" href="#enquiry">
             Отправить запрос
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -580,7 +589,7 @@
         </ol>
 
         <div class="process__cta">
-          <a class="btn btn--primary btn--lg" href="#contact">
+          <a class="btn btn--primary btn--lg" href="#enquiry">
             Отправить запрос
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -628,7 +637,7 @@
               Офис на&nbsp;Курфюрстендамм в&nbsp;Берлине
             </li>
           </ul>
-          <a class="btn btn--primary btn--lg about__cta" href="#contact">
+          <a class="btn btn--primary btn--lg about__cta" href="#enquiry">
             Отправить запрос
             <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
@@ -734,7 +743,7 @@
         </div>
 
         <!-- Sent via kontakt.php on the STRATO web space (no third parties). Topic values stay German for the e-mail to the office. -->
-        <form class="contact-form" action="../kontakt.php" method="POST" enctype="multipart/form-data" novalidate>
+        <form class="contact-form" id="enquiry" action="../kontakt.php" method="POST" enctype="multipart/form-data" novalidate>
           <input type="hidden" name="ts" value="">
           <input type="hidden" name="lang" value="ru">
           <div class="contact-form__hp" aria-hidden="true">
@@ -800,7 +809,7 @@
     <div class="container">
       <div class="site-footer__top">
         <p class="site-footer__claim" data-fit>Вам не&nbsp;нужно проходить этот путь в&nbsp;одиночку.</p>
-        <a class="btn btn--primary btn--lg" href="#contact">
+        <a class="btn btn--primary btn--lg" href="#enquiry">
           Отправить запрос
           <svg class="icon btn__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
@@ -836,6 +845,6 @@
   <script src="../vendor/gsap.min.js" defer></script>
   <script src="../vendor/ScrollTrigger.min.js" defer></script>
   <script src="../vendor/lenis.min.js" defer></script>
-  <script src="../script.js?v=19" defer></script>
+  <script src="../script.js?v=20" defer></script>
 </body>
 </html>

@@ -154,8 +154,15 @@
   const LANG = ['en', 'ru'].includes(document.documentElement.lang) ? document.documentElement.lang : 'de';
   const L = {
     de: {
-      title: 'Datenschutz-Einstellungen',
-      intro: 'Ich setze auf dieser Website Dienste von Google ein (Google Tag Manager, Google Analytics, Google Ads), um die Nutzung statistisch auszuwerten und den Erfolg meiner Anzeigen zu messen. Diese Dienste nutze ich nur mit Ihrer Einwilligung. Mit Ihrer Einwilligung in „Marketing“ wird beim Absenden des Kontaktformulars außerdem Ihre E-Mail-Adresse in gehashter (pseudonymisierter) Form an Google übermittelt, damit ich Anfragen meinen Anzeigen zuordnen kann. Dabei können Daten an Google in die USA übermittelt werden. Ihre Einwilligung ist freiwillig und kann jederzeit über „Cookie-Einstellungen“ am Seitenende geändert oder widerrufen werden. Technisch notwendige Funktionen sind immer aktiv.',
+      title: 'Diese Website verwendet Cookies',
+      intro: 'Ich nutze Cookies und ähnliche Technologien von Google, um die Nutzung dieser Website auszuwerten und den Erfolg meiner Anzeigen zu messen&nbsp;– beim Absenden des Kontaktformulars auch anhand Ihrer <span class="nowrap">E-Mail-Adresse</span> in gehashter Form. Dabei können Daten in die USA übermittelt werden. Das geschieht nur mit Ihrer Einwilligung; sie ist freiwillig und jederzeit über „Cookie-Einstellungen“ am Seitenende widerrufbar.',
+      more: 'Mehr erfahren',
+      moreItems: [
+        '<strong>Statistik:</strong> Google Analytics 4 zeigt mir, welche Seiten wie lange und mit welchem Gerät aufgerufen werden (ungefähre Region; IP-Adressen werden nicht gespeichert).',
+        '<strong>Marketing:</strong> Google Ads misst, ob Anzeigen zu Anfragen oder Anrufen führen, und kann Ihnen meine Anzeigen auf anderen Websites zeigen. Beim Absenden des Kontaktformulars wird Ihre <span class="nowrap">E-Mail-Adresse</span> in Ihrem Browser gehasht (SHA-256) und von Google mit Google-Konten abgeglichen (erweiterte Conversions). Name, Telefon, Anliegen und Nachricht werden nie übermittelt.',
+        '<strong>Anbieter:</strong> Google Ireland Limited, eingebunden über den Google Tag Manager, der erst nach Ihrer Zustimmung lädt. Eine Übermittlung an die Google LLC in den USA ist auf Grundlage des EU-US Data Privacy Framework möglich.',
+        '<strong>Ohne Einwilligung</strong> können Sie die Website uneingeschränkt nutzen; gespeichert wird dann nur Ihre Auswahl (12 Monate). Einzelne Kategorien wählen Sie unter „Einstellungen“, alle Details stehen in der Datenschutzerklärung.',
+      ],
       privacy: 'Datenschutzerklärung', privacyHref: 'datenschutz.html',
       imprint: 'Impressum', imprintHref: 'impressum.html',
       reject: 'Alle ablehnen', accept: 'Alle akzeptieren', settings: 'Einstellungen', save: 'Auswahl speichern',
@@ -174,17 +181,24 @@
       statisticsPurpose: 'Statistische Auswertung der Website-Nutzung (z.&nbsp;B. aufgerufene Seiten, Verweildauer, Gerät, ungefähre Region)',
       statisticsCookies: '_ga, _ga_* – bis zu 2 Jahre',
       marketing: 'Marketing',
-      marketingInfo: 'Misst, ob meine Google-Anzeigen zu Anfragen führen (auch mithilfe Ihrer gehashten E-Mail-Adresse beim Absenden des Formulars), und ermöglicht passende Anzeigen auf anderen Websites.',
+      marketingInfo: 'Misst, ob meine Google-Anzeigen zu Anfragen führen (auch mithilfe Ihrer gehashten <span class="nowrap">E-Mail-Adresse</span> beim Absenden des Formulars), und ermöglicht passende Anzeigen auf anderen Websites.',
       marketingServices: 'Google Tag Manager, Google Ads (Conversion-Tracking inkl. erweiterter Conversions, Remarketing)',
-      marketingPurpose: 'Erfolgsmessung von Anzeigen; beim Absenden des Kontaktformulars Abgleich Ihrer gehashten E-Mail-Adresse (SHA-256) mit Google-Konten (erweiterte Conversions); Wiedererkennung für Werbung auf anderen Websites',
+      marketingPurpose: 'Erfolgsmessung von Anzeigen; beim Absenden des Kontaktformulars Abgleich Ihrer gehashten <span class="nowrap">E-Mail-Adresse</span> (SHA-256) mit Google-Konten (erweiterte Conversions); Wiedererkennung für Werbung auf anderen Websites',
       marketingCookies: '_gcl_au – 90 Tage; Cookies auf doubleclick.net/google.com (z.&nbsp;B. IDE) – bis zu 13 Monate',
       google: 'Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland',
       usa: 'Übermittlung in die USA möglich (EU-US Data Privacy Framework)',
       consentBasis: 'Ihre Einwilligung, Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG',
     },
     en: {
-      title: 'Privacy settings',
-      intro: 'This website uses Google services (Google Tag Manager, Google Analytics, Google Ads) to analyse how the site is used and to measure the success of my advertising. I only use these services with your consent. If you consent to “Marketing”, your email address is also sent to Google in hashed (pseudonymised) form when you submit the contact form, so that I can attribute enquiries to my ads. In the process, data may be transferred to Google in the USA. Your consent is voluntary and can be changed or withdrawn at any time via “Cookie settings” at the bottom of the page. Strictly necessary functions are always active.',
+      title: 'This website uses cookies',
+      intro: 'I use cookies and similar technologies from Google to analyse how this website is used and to measure the success of my ads&nbsp;– including, when you submit the contact form, your email address in hashed form. Data may be transferred to the USA in the process. This only happens with your consent, which is voluntary and can be withdrawn at any time via “Cookie settings” at the bottom of the page.',
+      more: 'Learn more',
+      moreItems: [
+        '<strong>Statistics:</strong> Google Analytics 4 shows me which pages are viewed, for how long and on which device (approximate region; IP addresses are not stored).',
+        '<strong>Marketing:</strong> Google Ads measures whether ads lead to enquiries or calls and can show you my ads on other websites. When you submit the contact form, your email address is hashed in your browser (SHA-256) and matched by Google with Google accounts (enhanced conversions). Your name, phone number, matter and message are never sent.',
+        '<strong>Provider:</strong> Google Ireland Limited, integrated via Google Tag Manager, which only loads after your consent. A transfer to Google LLC in the USA is possible on the basis of the EU-US Data Privacy Framework.',
+        '<strong>Without consent</strong> you can use the website without restriction; only your choice is stored (12 months). You can choose individual categories under “Settings”; full details are in the privacy policy.',
+      ],
       privacy: 'Privacy policy', privacyHref: 'privacy.html',
       imprint: 'Legal notice', imprintHref: 'legal-notice.html',
       reject: 'Reject all', accept: 'Accept all', settings: 'Settings', save: 'Save selection',
@@ -212,8 +226,15 @@
       consentBasis: 'Your consent, Art. 6(1)(a) GDPR, Section 25(1) TDDDG',
     },
     ru: {
-      title: 'Настройки конфиденциальности',
-      intro: 'На этом сайте я использую сервисы Google (Google Tag Manager, Google Analytics, Google Ads), чтобы статистически анализировать использование сайта и оценивать эффективность своей рекламы. Эти сервисы я использую только с Вашего согласия. Если Вы согласились на «Маркетинг», при отправке контактной формы Ваш адрес электронной почты также передаётся Google в хешированном (псевдонимизированном) виде, чтобы я мог соотнести запросы со своей рекламой. При этом данные могут передаваться Google в США. Ваше согласие добровольно, его можно в любой момент изменить или отозвать через «Настройки cookie» внизу страницы. Технически необходимые функции активны всегда.',
+      title: 'Этот сайт использует cookie',
+      intro: 'Я&nbsp;использую cookie и&nbsp;аналогичные технологии Google, чтобы анализировать использование сайта и&nbsp;оценивать эффективность своей рекламы&nbsp;– при отправке контактной формы также с&nbsp;помощью Вашего адреса электронной почты в&nbsp;хешированном виде. При этом данные могут передаваться в&nbsp;США. Это происходит только с&nbsp;Вашего согласия; оно добровольно и&nbsp;может быть в&nbsp;любой момент отозвано через «Настройки cookie» внизу страницы.',
+      more: 'Узнать больше',
+      moreItems: [
+        '<strong>Статистика:</strong> Google Analytics 4 показывает мне, какие страницы просматриваются, как долго и&nbsp;с&nbsp;какого устройства (приблизительный регион; IP-адреса не&nbsp;сохраняются).',
+        '<strong>Маркетинг:</strong> Google Ads показывает, приводят ли объявления к&nbsp;запросам или звонкам, и&nbsp;может показывать Вам мою рекламу на&nbsp;других сайтах. При отправке контактной формы Ваш адрес электронной почты хешируется в&nbsp;браузере (SHA-256) и&nbsp;сопоставляется Google с&nbsp;аккаунтами Google (расширенные конверсии). Имя, телефон, тема обращения и&nbsp;сообщение никогда не&nbsp;передаются.',
+        '<strong>Поставщик:</strong> Google Ireland Limited; сервисы подключаются через Google Tag Manager, который загружается только после Вашего согласия. Передача Google LLC в&nbsp;США возможна на&nbsp;основании EU-US Data Privacy Framework.',
+        '<strong>Без согласия</strong> Вы можете пользоваться сайтом без ограничений; сохраняется только Ваш выбор (12 месяцев). Отдельные категории можно выбрать в&nbsp;разделе «Настройки», все подробности&nbsp;– в&nbsp;политике конфиденциальности.',
+      ],
       privacy: 'Политика конфиденциальности', privacyHref: 'privacy.html',
       imprint: 'Выходные данные', imprintHref: 'legal-notice.html',
       reject: 'Отклонить все', accept: 'Принять все', settings: 'Настройки', save: 'Сохранить выбор',
@@ -250,6 +271,10 @@
     <div class="cc__view" data-cc-view="main">
       <h2 class="cc__title" id="cc-title">${L.title}</h2>
       <p class="cc__text" id="cc-desc">${L.intro}</p>
+      <details class="cc__more">
+        <summary>${L.more}</summary>
+        <ul class="cc__more-list">${L.moreItems.map((item) => `<li>${item}</li>`).join('')}</ul>
+      </details>
       <p class="cc__links"><a href="${L.privacyHref}">${L.privacy}</a><a href="${L.imprintHref}">${L.imprint}</a></p>
       <div class="cc__actions">
         <button type="button" class="cc__btn" data-cc-action="reject">${L.reject}</button>

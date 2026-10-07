@@ -2075,6 +2075,28 @@ button.text-link {
 .cc__details dt { font-weight: 600; }
 .cc__details dd { margin: 0; color: var(--rm-ink-2); }
 
+/* „Mehr erfahren“ auf der ersten Ebene: Einzelheiten vor der Entscheidung aufklappbar */
+.cc__more summary {
+  width: max-content;
+  max-width: 100%;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rm-gold-dark);
+  cursor: pointer;
+}
+.cc__more summary:hover { color: var(--rm-ink); }
+.cc__more-list {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding-left: 1.1em;
+  list-style: disc;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--rm-ink-2);
+}
+.cc__more-list strong { color: var(--rm-ink); }
+
 /* Desktop: erste Ebene breit und flach – Text links, Buttons rechts */
 @media (min-width: 1000px) {
   .cc__inner { max-width: 1240px; padding: 24px 32px; }
@@ -2086,11 +2108,13 @@ button.text-link {
   }
   .cc__view[data-cc-view="main"] > .cc__title,
   .cc__view[data-cc-view="main"] > .cc__text,
+  .cc__view[data-cc-view="main"] > .cc__more,
   .cc__view[data-cc-view="main"] > .cc__links { grid-column: 1; }
   .cc__view[data-cc-view="main"] > .cc__title { font-size: 1.15rem; }
   .cc__view[data-cc-view="main"] > .cc__actions {
     grid-column: 2;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 4;
+    align-self: start;
     grid-template-columns: repeat(2, 200px);
     margin-top: 0;
   }
@@ -2102,11 +2126,23 @@ button.text-link {
   .cc__details dl { grid-template-columns: 1fr; }
   .cc__details dd { margin-bottom: 6px; }
 }
+/* Handy: „Alle ablehnen“ und „Alle akzeptieren“ nebeneinander – gleich groß, spart Höhe */
+@media (max-width: 639px) {
+  .cc__view[data-cc-view="main"] { gap: 10px; }
+  .cc__view[data-cc-view="main"] .cc__title { font-size: 1.15rem; }
+  .cc__view[data-cc-view="main"] .cc__text { font-size: 14px; line-height: 1.5; }
+}
+@media (min-width: 360px) and (max-width: 639px) {
+  .cc__view[data-cc-view="main"] .cc__actions { grid-template-columns: 1fr 1fr; }
+  .cc__view[data-cc-view="main"] .cc__btn { padding: 12px 8px; font-size: 15px; }
+  .cc__view[data-cc-view="main"] .cc__link { grid-column: 1 / -1; justify-self: center; min-height: 36px; padding: 4px; }
+}
 /* Handy und Tablet: Die Entscheidungs-Buttons bleiben immer sichtbar am unteren Rand des
    Banners stehen, der Text scrollt darüber (Ablehnen so leicht erreichbar wie Zustimmen). */
 @media (max-width: 999px) {
   .cc__view > .cc__actions {
     position: sticky;
+    z-index: 1;
     bottom: calc(-1 * var(--cc-pad, 24px));
     margin: 4px 0 calc(-1 * var(--cc-pad, 24px));
     padding: 12px 0 var(--cc-pad, 24px);
@@ -2183,3 +2219,5 @@ button.text-link {
     scroll-behavior: auto !important;
   }
 }
+
+.nowrap { white-space: nowrap; }

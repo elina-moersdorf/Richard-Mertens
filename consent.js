@@ -155,13 +155,13 @@
   const L = {
     de: {
       title: 'Diese Website verwendet Cookies',
-      intro: 'Ich nutze Cookies und ähnliche Technologien von Google, um die Nutzung dieser Website auszuwerten und den Erfolg meiner Anzeigen zu messen&nbsp;– beim Absenden des Kontaktformulars auch anhand Ihrer <span class="nowrap">E-Mail-Adresse</span> in gehashter Form. Dabei können Daten in die USA übermittelt werden. Das geschieht nur mit Ihrer Einwilligung; sie ist freiwillig und jederzeit über „Cookie-Einstellungen“ am Seitenende widerrufbar.',
+      intro: 'Ich verwende Cookies, um die Nutzung dieser Website auszuwerten und meine Werbung zu verbessern. Dafür arbeite ich mit Google zusammen; Daten können dabei auch in die USA übermittelt werden. Sie entscheiden selbst&nbsp;– Ihre Einwilligung ist freiwillig und jederzeit widerrufbar.',
       more: 'Mehr erfahren',
       moreItems: [
         '<strong>Statistik:</strong> Google Analytics 4 zeigt mir, welche Seiten wie lange und mit welchem Gerät aufgerufen werden (ungefähre Region; IP-Adressen werden nicht gespeichert).',
         '<strong>Marketing:</strong> Google Ads misst, ob Anzeigen zu Anfragen oder Anrufen führen, und kann Ihnen meine Anzeigen auf anderen Websites zeigen. Beim Absenden des Kontaktformulars wird Ihre <span class="nowrap">E-Mail-Adresse</span> in Ihrem Browser gehasht (SHA-256) und von Google mit Google-Konten abgeglichen (erweiterte Conversions). Name, Telefon, Anliegen und Nachricht werden nie übermittelt.',
         '<strong>Anbieter:</strong> Google Ireland Limited, eingebunden über den Google Tag Manager, der erst nach Ihrer Zustimmung lädt. Eine Übermittlung an die Google LLC in den USA ist auf Grundlage des EU-US Data Privacy Framework möglich.',
-        '<strong>Ohne Einwilligung</strong> können Sie die Website uneingeschränkt nutzen; gespeichert wird dann nur Ihre Auswahl (12 Monate). Einzelne Kategorien wählen Sie unter „Einstellungen“, alle Details stehen in der Datenschutzerklärung.',
+        '<strong>Ohne Einwilligung</strong> können Sie die Website uneingeschränkt nutzen; gespeichert wird dann nur Ihre Auswahl (12 Monate). Einzelne Kategorien wählen Sie unter „Einstellungen“; widerrufen können Sie jederzeit über „Cookie-Einstellungen“ am Seitenende. Alle Details stehen in der Datenschutzerklärung.',
       ],
       privacy: 'Datenschutzerklärung', privacyHref: 'datenschutz.html',
       imprint: 'Impressum', imprintHref: 'impressum.html',
@@ -191,13 +191,13 @@
     },
     en: {
       title: 'This website uses cookies',
-      intro: 'I use cookies and similar technologies from Google to analyse how this website is used and to measure the success of my ads&nbsp;– including, when you submit the contact form, your email address in hashed form. Data may be transferred to the USA in the process. This only happens with your consent, which is voluntary and can be withdrawn at any time via “Cookie settings” at the bottom of the page.',
+      intro: 'I use cookies to analyse how this website is used and to improve my advertising. For this I work with Google; data may also be transferred to the USA. It’s your choice&nbsp;– your consent is voluntary and can be withdrawn at any time.',
       more: 'Learn more',
       moreItems: [
         '<strong>Statistics:</strong> Google Analytics 4 shows me which pages are viewed, for how long and on which device (approximate region; IP addresses are not stored).',
         '<strong>Marketing:</strong> Google Ads measures whether ads lead to enquiries or calls and can show you my ads on other websites. When you submit the contact form, your email address is hashed in your browser (SHA-256) and matched by Google with Google accounts (enhanced conversions). Your name, phone number, matter and message are never sent.',
         '<strong>Provider:</strong> Google Ireland Limited, integrated via Google Tag Manager, which only loads after your consent. A transfer to Google LLC in the USA is possible on the basis of the EU-US Data Privacy Framework.',
-        '<strong>Without consent</strong> you can use the website without restriction; only your choice is stored (12 months). You can choose individual categories under “Settings”; full details are in the privacy policy.',
+        '<strong>Without consent</strong> you can use the website without restriction; only your choice is stored (12 months). You can choose individual categories under “Settings” and withdraw your consent at any time via “Cookie settings” at the bottom of the page. Full details are in the privacy policy.',
       ],
       privacy: 'Privacy policy', privacyHref: 'privacy.html',
       imprint: 'Legal notice', imprintHref: 'legal-notice.html',
@@ -227,13 +227,13 @@
     },
     ru: {
       title: 'Этот сайт использует cookie',
-      intro: 'Я&nbsp;использую cookie и&nbsp;аналогичные технологии Google, чтобы анализировать использование сайта и&nbsp;оценивать эффективность своей рекламы&nbsp;– при отправке контактной формы также с&nbsp;помощью Вашего адреса электронной почты в&nbsp;хешированном виде. При этом данные могут передаваться в&nbsp;США. Это происходит только с&nbsp;Вашего согласия; оно добровольно и&nbsp;может быть в&nbsp;любой момент отозвано через «Настройки cookie» внизу страницы.',
+      intro: 'Я&nbsp;использую cookie, чтобы анализировать использование сайта и&nbsp;улучшать свою рекламу. Для этого я&nbsp;сотрудничаю с&nbsp;Google; данные могут передаваться и&nbsp;в&nbsp;США. Решение за&nbsp;Вами&nbsp;– согласие добровольно и&nbsp;может быть отозвано в&nbsp;любой момент.',
       more: 'Узнать больше',
       moreItems: [
         '<strong>Статистика:</strong> Google Analytics 4 показывает мне, какие страницы просматриваются, как долго и&nbsp;с&nbsp;какого устройства (приблизительный регион; IP-адреса не&nbsp;сохраняются).',
         '<strong>Маркетинг:</strong> Google Ads показывает, приводят ли объявления к&nbsp;запросам или звонкам, и&nbsp;может показывать Вам мою рекламу на&nbsp;других сайтах. При отправке контактной формы Ваш адрес электронной почты хешируется в&nbsp;браузере (SHA-256) и&nbsp;сопоставляется Google с&nbsp;аккаунтами Google (расширенные конверсии). Имя, телефон, тема обращения и&nbsp;сообщение никогда не&nbsp;передаются.',
         '<strong>Поставщик:</strong> Google Ireland Limited; сервисы подключаются через Google Tag Manager, который загружается только после Вашего согласия. Передача Google LLC в&nbsp;США возможна на&nbsp;основании EU-US Data Privacy Framework.',
-        '<strong>Без согласия</strong> Вы можете пользоваться сайтом без ограничений; сохраняется только Ваш выбор (12 месяцев). Отдельные категории можно выбрать в&nbsp;разделе «Настройки», все подробности&nbsp;– в&nbsp;политике конфиденциальности.',
+        '<strong>Без согласия</strong> Вы можете пользоваться сайтом без ограничений; сохраняется только Ваш выбор (12 месяцев). Отдельные категории можно выбрать в&nbsp;разделе «Настройки», а&nbsp;отозвать согласие&nbsp;– в&nbsp;любой момент через «Настройки cookie» внизу страницы. Все подробности&nbsp;– в&nbsp;политике конфиденциальности.',
       ],
       privacy: 'Политика конфиденциальности', privacyHref: 'privacy.html',
       imprint: 'Выходные данные', imprintHref: 'legal-notice.html',

@@ -2000,6 +2000,15 @@ button.text-link {
   transition: background-color var(--dur-fast) var(--ease-calm);
 }
 .cc__btn:hover { background: var(--rm-deep); }
+/* „Alle ablehnen“: weiß mit dunklem Rahmen und dunkler Schrift – gleiche Größe, gleiche Schrift,
+   gleiche Position und voller Kontrast, damit die Ablehnung gleichwertig erkennbar bleibt */
+.cc__btn[data-cc-action="reject"] {
+  background: var(--rm-white);
+  color: var(--rm-night);
+  border-color: var(--rm-night);
+}
+.cc__btn[data-cc-action="reject"]:hover { background: var(--rm-stone); }
+.cc__btn:focus-visible { outline: 2px solid var(--rm-gold); outline-offset: 2px; }
 .cc__link {
   min-height: 44px;
   padding: 8px 4px;
